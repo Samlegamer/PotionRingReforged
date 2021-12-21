@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " g ",
+        "g#g",
+        " g "
+    ],
+    "key": {
+        "#": {
+            "item": "potionring:potion_ring"
+        },
+        "g": {
+            "item": "minecraft:sugar"
+        }
+    },
+    "result": {
+        "item": "potionring:ring_of_speed",
+        "count": 1
+    }
+}
