@@ -1,0 +1,4 @@
+{
+  "replace": false,
+  "values": ["potionring:potion_ring", "potionring:ring_of_strengh", "potionring:ring_of_speed", "potionring:ring_of_resistance", "potionring:ring_of_jump_boost", "potionring:ring_of_haste", "potionring:ring_of_regeneration"]
+}
