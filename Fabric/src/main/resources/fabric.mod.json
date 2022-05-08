@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "potionring",
+  "version": "${version}",
+
+  "name": "Potion Ring",
+  "description": "A port of the Potion Finger Mod to Minecraft 1.18.2 [FABRIC]!",
+  "authors": [
+    "Samlegamer"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/potion-ring-reforged",
+    "sources": "https://github.com/Samlegamer/PotionRingReforged"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/potionring/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "fr.samlegamer.potionring.PotionRing"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "trinkets": ">=3.0.0",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
