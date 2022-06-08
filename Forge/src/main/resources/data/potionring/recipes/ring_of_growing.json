@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " g ",
+        "g#g",
+        " g "
+    ],
+    "key": {
+        "#": {
+            "item": "potionring:potion_ring"
+        },
+        "g": {
+            "item": "minecraft:crimson_fungus"
+        }
+    },
+    "result": {
+        "item": "potionring:ring_of_growing",
+        "count": 1
+    },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "sizeshiftingpotions"
+    }
+  ]
+}
