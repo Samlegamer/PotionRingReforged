@@ -1,6 +1,6 @@
 # PotionRingReforged
 
-Port 1.16.5, 1.18.2, 1.19 of Potion Fingers.
+Port 1.16.5, 1.18.2, 1.19.1 of Potion Fingers.
 
 Available on Forge and Fabric !
 
