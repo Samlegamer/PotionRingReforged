@@ -1,0 +1,36 @@
+modLoader="javafml"
+loaderVersion="[41,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/Samlegamer/PotionRingReforged/issues"
+
+[[mods]]
+modId="potionring"
+version="1.19-1.1"
+displayName="Potion Rings - REFORGED"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/potion-ring-reforged"
+logoFile="icon.png"
+credits="Vazkii original creator of Potion Fingers Mod"
+authors="Samlegamer"
+description='''
+A port of the Finger Potion Mod to Minecraft 1.19 !
+'''
+
+[[dependencies.potionring]]
+    modId="forge"
+    mandatory=true
+    versionRange="[41,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.potionring]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19,1.20)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.potionring]]
+    modId = "curios"
+    mandatory = true
+    ordering = "AFTER"
+    versionRange = "NONE"
