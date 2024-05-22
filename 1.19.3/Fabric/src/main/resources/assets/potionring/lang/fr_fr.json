@@ -1,0 +1,13 @@
+{ 	
+	"item.potionring.potion_ring": "Anneau de potion",
+	"item.potionring.ring_of_haste": "Anneau de célérité",
+	"item.potionring.ring_of_jump_boost": "Anneau de saut",
+	"item.potionring.ring_of_resistance": "Anneau de résistance",
+	"item.potionring.ring_of_speed": "Anneau de vitesse",
+	"item.potionring.ring_of_strengh": "Anneau de force",
+	"item.potionring.ring_of_regeneration": "Anneau de régénération",
+	"item.potionring.ring_of_growing": "Anneau d'agrandissement",
+	"item.potionring.ring_of_shrinking": "Anneau de rétraction",
+	"item.potionring.ring_of_widening": "Anneau d'élargissement",
+	"item.potionring.ring_of_thinning": "Anneau d'amincissement"
+}
