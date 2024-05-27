@@ -9,12 +9,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class PotionRingItem extends Item implements ICurioItem
 {
 	public PRTypes eff;
-	public boolean isFoil;
 	
 	public PotionRingItem(Properties p_41383_, PRTypes effect)
 	{
@@ -33,39 +33,39 @@ public class PotionRingItem extends Item implements ICurioItem
 	}
 	
 	@Override
-	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
+	public void curioTick(SlotContext slotContext, ItemStack stack)
 	{
 		switch(eff)
 		{
 		case strength:			
-			reloadEffect(livingEntity, MobEffects.DAMAGE_BOOST);
+			reloadEffect(slotContext.entity(), MobEffects.DAMAGE_BOOST);
 			break;
 		case speed:
-			reloadEffect(livingEntity, MobEffects.MOVEMENT_SPEED);
+			reloadEffect(slotContext.entity(), MobEffects.MOVEMENT_SPEED);
 			break;
 		case resistance:
-			reloadEffect(livingEntity, MobEffects.DAMAGE_RESISTANCE);
+			reloadEffect(slotContext.entity(), MobEffects.DAMAGE_RESISTANCE);
 			break;
 		case jump:
-			reloadEffect(livingEntity, MobEffects.JUMP);
+			reloadEffect(slotContext.entity(), MobEffects.JUMP);
 			break;
 		case haste:
-			reloadEffect(livingEntity, MobEffects.DIG_SPEED);
+			reloadEffect(slotContext.entity(), MobEffects.DIG_SPEED);
 			break;
 		case regeneration:
-			reloadEffect(livingEntity, MobEffects.REGENERATION);
+			reloadEffect(slotContext.entity(), MobEffects.REGENERATION);
 			break;
 		case growing:
-			reloadEffect(livingEntity, Holder.direct(PotionRing.growing.get()));
+			reloadEffect(slotContext.entity(), Holder.direct(PotionRing.growing.get()));
 			break;
 		case shrinking:
-			reloadEffect(livingEntity, Holder.direct(PotionRing.shrinking.get()));
+			reloadEffect(slotContext.entity(), Holder.direct(PotionRing.shrinking.get()));
 			break;
 		case widening:
-			reloadEffect(livingEntity, Holder.direct(PotionRing.widening.get()));
+			reloadEffect(slotContext.entity(), Holder.direct(PotionRing.widening.get()));
 			break;
 		case thinning:
-			reloadEffect(livingEntity, Holder.direct(PotionRing.thinning.get()));
+			reloadEffect(slotContext.entity(), Holder.direct(PotionRing.thinning.get()));
 			break;
 		case none:
 			break;
@@ -73,39 +73,42 @@ public class PotionRingItem extends Item implements ICurioItem
 	}
 	
 	@Override
-	public void onEquip(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
+	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack)
 	{
+        MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.JUMP, 240, 0);
+        slotContext.entity().addEffect(effectInstance, slotContext.entity());
+
 		switch(eff)
 		{
 		case strength:			
-			AddEffect(livingEntity, MobEffects.DAMAGE_BOOST);
+			AddEffect(slotContext.entity(), MobEffects.DAMAGE_BOOST);
 			break;
 		case speed:
-			AddEffect(livingEntity, MobEffects.MOVEMENT_SPEED);
+			AddEffect(slotContext.entity(), MobEffects.MOVEMENT_SPEED);
 			break;
 		case resistance:
-			AddEffect(livingEntity, MobEffects.DAMAGE_RESISTANCE);
+			AddEffect(slotContext.entity(), MobEffects.DAMAGE_RESISTANCE);
 			break;
 		case jump:
-			AddEffect(livingEntity, MobEffects.JUMP);
+			AddEffect(slotContext.entity(), MobEffects.JUMP);
 			break;
 		case haste:
-			AddEffect(livingEntity, MobEffects.DIG_SPEED);
+			AddEffect(slotContext.entity(), MobEffects.DIG_SPEED);
 			break;
 		case regeneration:
-			AddEffect(livingEntity, MobEffects.REGENERATION);
+			AddEffect(slotContext.entity(), MobEffects.REGENERATION);
 			break;
 		case growing:
-			AddEffect(livingEntity, Holder.direct(PotionRing.growing.get()));
+			AddEffect(slotContext.entity(), Holder.direct(PotionRing.growing.get()));
 			break;
 		case shrinking:
-			AddEffect(livingEntity, Holder.direct(PotionRing.shrinking.get()));
+			AddEffect(slotContext.entity(), Holder.direct(PotionRing.shrinking.get()));
 			break;
 		case widening:
-			AddEffect(livingEntity, Holder.direct(PotionRing.widening.get()));
+			AddEffect(slotContext.entity(), Holder.direct(PotionRing.widening.get()));
 			break;
 		case thinning:
-			AddEffect(livingEntity, Holder.direct(PotionRing.thinning.get()));
+			AddEffect(slotContext.entity(), Holder.direct(PotionRing.thinning.get()));
 			break;
 		case none:
 			break;
@@ -113,39 +116,39 @@ public class PotionRingItem extends Item implements ICurioItem
 	}
 
     @Override
-    public boolean canUnequip(String identifier, LivingEntity livingEntity, ItemStack stack)
+    public boolean canUnequip(SlotContext slotContext, ItemStack stack)
     {
     	switch(eff)
 		{
 		case strength:
-			DeleteEffect(livingEntity, MobEffects.DAMAGE_BOOST);
+			DeleteEffect(slotContext.entity(), MobEffects.DAMAGE_BOOST);
 			break;
 		case speed:
-			DeleteEffect(livingEntity, MobEffects.MOVEMENT_SPEED);
+			DeleteEffect(slotContext.entity(), MobEffects.MOVEMENT_SPEED);
 			break;
 		case resistance:
-			DeleteEffect(livingEntity, MobEffects.DAMAGE_RESISTANCE);
+			DeleteEffect(slotContext.entity(), MobEffects.DAMAGE_RESISTANCE);
 			break;
 		case jump:
-			DeleteEffect(livingEntity, MobEffects.JUMP);
+			DeleteEffect(slotContext.entity(), MobEffects.JUMP);
 			break;
 		case haste:
-			DeleteEffect(livingEntity, MobEffects.DIG_SPEED);
+			DeleteEffect(slotContext.entity(), MobEffects.DIG_SPEED);
 			break;
 		case regeneration:
-			DeleteEffect(livingEntity, MobEffects.REGENERATION);
+			DeleteEffect(slotContext.entity(), MobEffects.REGENERATION);
 			break;
 		case growing:
-			DeleteEffect(livingEntity, Holder.direct(PotionRing.growing.get()));
+			DeleteEffect(slotContext.entity(), Holder.direct(PotionRing.growing.get()));
 			break;
 		case shrinking:
-			DeleteEffect(livingEntity, Holder.direct(PotionRing.shrinking.get()));
+			DeleteEffect(slotContext.entity(), Holder.direct(PotionRing.shrinking.get()));
 			break;
 		case widening:
-			DeleteEffect(livingEntity, Holder.direct(PotionRing.widening.get()));
+			DeleteEffect(slotContext.entity(), Holder.direct(PotionRing.widening.get()));
 			break;
 		case thinning:
-			DeleteEffect(livingEntity, Holder.direct(PotionRing.thinning.get()));
+			DeleteEffect(slotContext.entity(), Holder.direct(PotionRing.thinning.get()));
 			break;
 		case none:
 			break;
@@ -158,15 +161,13 @@ public class PotionRingItem extends Item implements ICurioItem
     {
     	if(!livingEntity.hasEffect(mbEff))
 		{
-            MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, 0, false, false);
-            if(livingEntity.level().isClientSide) effectInstance.getDuration();
-            livingEntity.addEffect(effectInstance);
+            MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, 0);
+            livingEntity.addEffect(effectInstance, livingEntity);
 		}
-		else if(CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 2)
+		else if(CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 2)
 		{
-			MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, 1, true, false);
-            if(livingEntity.level().isClientSide) effectInstance.getDuration();
-            livingEntity.addEffect(effectInstance);
+			MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, 1);
+            livingEntity.addEffect(effectInstance, livingEntity);
 		}
     }
     
@@ -180,9 +181,9 @@ public class PotionRingItem extends Item implements ICurioItem
 	    	MobEffectInstance currentEffect = livingEntity.getEffect(mbEff);
 	        int currentDuration = currentEffect.getDuration();
 
-	        if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 1) {
+	        if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 1) {
 	            newDuration1 += currentDuration;
-	        } else if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 2) {
+	        } else if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 2) {
 	            newDuration2 += currentDuration;
 	        }
 	    }
@@ -190,9 +191,9 @@ public class PotionRingItem extends Item implements ICurioItem
 	    MobEffectInstance effA1 = new MobEffectInstance(mbEff, newDuration1, 0, false, false);
 	    MobEffectInstance effA2 = new MobEffectInstance(mbEff, newDuration2, 1, false, false);
 
-	    if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 1) {
+	    if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 1) {
 	        livingEntity.addEffect(effA1);
-	    } else if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 2) {
+	    } else if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 2) {
 	        livingEntity.addEffect(effA2);
 	    }
 	}
