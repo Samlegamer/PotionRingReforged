@@ -6,9 +6,9 @@
 	"potionring:ring_of_resistance", 
 	"potionring:ring_of_jump_boost", 
 	"potionring:ring_of_haste", 
-	"potionring:ring_of_regeneration",
+	"potionring:ring_of_regeneration"/*,
 	"potionring:ring_of_growing",
 	"potionring:ring_of_shrinking",
 	"potionring:ring_of_widening",
-	"potionring:ring_of_thinning"]
+	"potionring:ring_of_thinning"*/]
 }
