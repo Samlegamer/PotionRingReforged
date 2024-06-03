@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.common.NeoForge;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -75,11 +76,11 @@ public class PotionRingItem extends Item implements ICurioItem
 	@Override
 	public void curioTick(SlotContext slotContext, ItemStack stack)
 	{
-		LivingEntity pocessor = slotContext.entity();
+		LivingEntity possesor = slotContext.entity();
 		PotionRing.log.info("Chargement de l'effet...");
 		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.REGENERATION, 240, 0);
             	effectInstance.getDuration();
-            	pocessor.addEffect(effectInstance);
+            	possesor.addEffect(effectInstance);
             	PotionRing.log.info("effet apliqué...");
             
 		
@@ -108,15 +109,14 @@ public class PotionRingItem extends Item implements ICurioItem
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack)
 	{
-		LivingEntity possesor = slotContext.entity();
 		PotionRing.log.info("Chargement de l'effet...");
-		if(!possesor.hasEffect(MobEffects.REGENERATION))
+		if(!slotContext.entity().hasEffect(MobEffects.REGENERATION))
 		{
             MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.REGENERATION, 240, 0);
-            if(possesor.level().isClientSide()) 
+            if(slotContext.entity().level().isClientSide()) 
             {
             	effectInstance.getDuration();
-            	possesor.addEffect(effectInstance);
+            	slotContext.entity().addEffect(effectInstance);
             	PotionRing.log.info("effet apliqué...");
             }
 		}
@@ -211,7 +211,7 @@ public class PotionRingItem extends Item implements ICurioItem
             if(slotContext.entity().level().isClientSide()) effectInstance.getDuration();
             slotContext.entity().addEffect(effectInstance);
 		}
-		else if(CuriosApi.getCuriosInventory(slotContext.entity()).resolve().get().findCurios(this).size() == 2)
+		else if(CuriosApi.getCuriosInventory(slotContext.entity()).get().findCurios(this).size() == 2)
 		{
 			MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, 1);
 			if(slotContext.entity().level().isClientSide()) effectInstance.getDuration();
@@ -229,9 +229,9 @@ public class PotionRingItem extends Item implements ICurioItem
 	    	MobEffectInstance currentEffect = livingEntity.getEffect(mbEff);
 	        int currentDuration = currentEffect.getDuration();
 
-	        if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 1) {
+	        if (CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() == 1) {
 	            newDuration1 += currentDuration;
-	        } else if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 2) {
+	        } else if (CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() == 2) {
 	            newDuration2 += currentDuration;
 	        }
 	    }
@@ -239,9 +239,9 @@ public class PotionRingItem extends Item implements ICurioItem
 	    MobEffectInstance effA1 = new MobEffectInstance(mbEff, newDuration1, 0, false, false);
 	    MobEffectInstance effA2 = new MobEffectInstance(mbEff, newDuration2, 1, false, false);
 
-	    if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 1) {
+	    if (CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() == 1) {
 	        livingEntity.addEffect(effA1);
-	    } else if (CuriosApi.getCuriosInventory(livingEntity).resolve().get().findCurios(this).size() == 2) {
+	    } else if (CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() == 2) {
 	        livingEntity.addEffect(effA2);
 	    }
 	}
