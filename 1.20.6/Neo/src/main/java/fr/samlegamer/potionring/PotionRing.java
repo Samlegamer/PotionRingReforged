@@ -1,12 +1,13 @@
 package fr.samlegamer.potionring;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
@@ -17,15 +18,15 @@ public class PotionRing
 	public static final String MODID = "potionring";
 	public static final Logger log = LogManager.getLogger();
 	
-	public static final DeferredRegister<MobEffect> growing = DeferredRegister.create(new ResourceLocation("growing"), "sizeshiftingpotions");
-	public static final DeferredRegister<MobEffect> shrinking = DeferredRegister.create(new ResourceLocation("sizeshiftingpotions:shrinking"), "sizeshiftingpotions");
-	public static final DeferredRegister<MobEffect> widening = DeferredRegister.create(new ResourceLocation("sizeshiftingpotions:widening"), "sizeshiftingpotions");
-	public static final DeferredRegister<MobEffect> thinning = DeferredRegister.create(new ResourceLocation("sizeshiftingpotions:thinning"), "sizeshiftingpotions");
+	public static final MobEffect growing = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation("sizeshiftingpotions", "growing"));
+	public static final MobEffect shrinking = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation("sizeshiftingpotions", "shrinking"));
+	public static final MobEffect widening = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation("sizeshiftingpotions", "widening"));
+	public static final MobEffect thinning = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation("sizeshiftingpotions", "thinning"));
 	
 	public PotionRing(IEventBus modEventBus)
 	{
 		modEventBus.addListener(this::addToTab);
-		//PRItemsRegistry.addons();
+		PRItemsRegistry.addons();
 		PRItemsRegistry.ITEMS_REGISTRY.register(modEventBus);
 		log.info("Potion Ring - REFORGED is Charged");
 	}
@@ -41,13 +42,13 @@ public class PotionRing
 	    	event.accept(PRItemsRegistry.RING_OF_RESISTANCE);
 	    	event.accept(PRItemsRegistry.RING_OF_SPEED);
 	    	event.accept(PRItemsRegistry.RING_OF_STRENGH);
-	    	/*if(ModList.get().isLoaded("sizeshiftingpotions"))
+	    	if(ModList.get().isLoaded("sizeshiftingpotions"))
 			{
 		    	event.accept(PRItemsRegistry.ring_of_growing);
 		    	event.accept(PRItemsRegistry.ring_of_shrinking);
 		    	event.accept(PRItemsRegistry.ring_of_widening);
 		    	event.accept(PRItemsRegistry.ring_of_thinning);
-			}*/
+			}
 	    }
 	}
 }

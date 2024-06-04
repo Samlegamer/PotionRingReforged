@@ -2,6 +2,7 @@ package fr.samlegamer.potionring.item;
 
 import fr.samlegamer.potionring.PotionRing;
 import net.minecraft.world.item.Item;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -19,7 +20,7 @@ public class PRItemsRegistry
 	public static final DeferredItem<Item> RING_OF_SPEED = ITEMS_REGISTRY.register("ring_of_speed", () -> new PotionRingItem(RING, PRTypes.speed));
 	public static final DeferredItem<Item> RING_OF_STRENGH = ITEMS_REGISTRY.register("ring_of_strengh", () -> new PotionRingItem(RING, PRTypes.strength));
 
-	/*public static RegistryObject<Item> ring_of_growing, ring_of_shrinking, ring_of_widening, ring_of_thinning;
+	public static DeferredItem<Item> ring_of_growing, ring_of_shrinking, ring_of_widening, ring_of_thinning;
 
 	public static void addons()
 	{
@@ -38,5 +39,5 @@ public class PRItemsRegistry
 			ring_of_widening = ITEMS_REGISTRY.register("ring_of_widening", () -> new PotionRingItem(new Item.Properties().stacksTo(1), PRTypes.none));
 			ring_of_thinning = ITEMS_REGISTRY.register("ring_of_thinning", () -> new PotionRingItem(new Item.Properties().stacksTo(1), PRTypes.none));
 		}
-	}*/
+	}
 }

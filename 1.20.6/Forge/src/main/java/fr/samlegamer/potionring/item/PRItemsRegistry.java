@@ -21,7 +21,7 @@ public class PRItemsRegistry
 	public static final RegistryObject<Item> RING_OF_SPEED = ITEMS_REGISTRY.register("ring_of_speed", () -> new PotionRingItem(RING, PRTypes.speed));
 	public static final RegistryObject<Item> RING_OF_STRENGH = ITEMS_REGISTRY.register("ring_of_strengh", () -> new PotionRingItem(RING, PRTypes.strength));
 
-	/*public static RegistryObject<Item> ring_of_growing, ring_of_shrinking, ring_of_widening, ring_of_thinning;
+	public static RegistryObject<Item> ring_of_growing, ring_of_shrinking, ring_of_widening, ring_of_thinning;
 
 	public static void addons()
 	{
@@ -35,10 +35,10 @@ public class PRItemsRegistry
 		}
 		else
 		{
-			ring_of_growing = ITEMS_REGISTRY.register("ring_of_growing", () -> new PotionRingItem(new Item.Properties().stacksTo(1), PRTypes.none));
-			ring_of_shrinking = ITEMS_REGISTRY.register("ring_of_shrinking", () -> new PotionRingItem(new Item.Properties().stacksTo(1), PRTypes.none));
-			ring_of_widening = ITEMS_REGISTRY.register("ring_of_widening", () -> new PotionRingItem(new Item.Properties().stacksTo(1), PRTypes.none));
-			ring_of_thinning = ITEMS_REGISTRY.register("ring_of_thinning", () -> new PotionRingItem(new Item.Properties().stacksTo(1), PRTypes.none));
+			ring_of_growing = ITEMS_REGISTRY.register("ring_of_growing", () -> new PotionRingItem(RING, PRTypes.none));
+			ring_of_shrinking = ITEMS_REGISTRY.register("ring_of_shrinking", () -> new PotionRingItem(RING, PRTypes.none));
+			ring_of_widening = ITEMS_REGISTRY.register("ring_of_widening", () -> new PotionRingItem(RING, PRTypes.none));
+			ring_of_thinning = ITEMS_REGISTRY.register("ring_of_thinning", () -> new PotionRingItem(RING, PRTypes.none));
 		}
-	}*/
+	}
 }
