@@ -1,0 +1,39 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "${group}",
+		"id": "potionring",
+		"version": "${version}",
+		"metadata": {
+			"name": "Potions Rings - REFORGED",
+			"description": "A port of the Potion Finger Mod to Minecraft 1.20.6 [Quilt]!",
+			"contributors": {
+				"Your name here": "Samlegamer"
+			},
+			"contact": {
+				"homepage": "https://curseforge.com/minecraft/mc-mods/potion-ring-reforged-fabric",
+				"issues": "https://github.com/Samlegamer/PotionRingReforged/issues",
+				"sources": "https://github.com/Samlegamer/PotionRingReforged"
+			},
+			"icon": "assets/potionring/icon.png"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"init": "fr.samlegamer.potionring.PotionRing"
+		},
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.19.1"
+			},
+			{
+				"id": "quilted_fabric_api",
+				"versions": ">=7.0.2"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=1.20"
+			}
+		]
+	}
+}

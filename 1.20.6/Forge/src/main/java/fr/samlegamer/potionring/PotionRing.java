@@ -3,22 +3,15 @@ package fr.samlegamer.potionring;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import top.theillusivec4.curios.api.CuriosApi;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
-import fr.samlegamer.potionring.item.PRTypes;
-import fr.samlegamer.potionring.item.PotionRingItem;
 
 @Mod(value = PotionRing.MODID)
 @Mod.EventBusSubscriber(modid = PotionRing.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -35,7 +28,7 @@ public class PotionRing
 	public PotionRing()
 	{
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::addToTab);
-		//PRItemsRegistry.addons();
+		PRItemsRegistry.addons();
 		PRItemsRegistry.ITEMS_REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
 		log.info("Potion Ring - REFORGED is Charged");
 	}
@@ -45,7 +38,7 @@ public class PotionRing
 	    if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS)
 	    {
 	    	event.accept(PRItemsRegistry.POTION_RING);
-	    	/*event.accept(PRItemsRegistry.RING_OF_REGENERATION);
+	    	event.accept(PRItemsRegistry.RING_OF_REGENERATION);
 	    	event.accept(PRItemsRegistry.RING_OF_HASTE);
 	    	event.accept(PRItemsRegistry.RING_OF_JUMP_BOOST);
 	    	event.accept(PRItemsRegistry.RING_OF_RESISTANCE);
@@ -57,7 +50,7 @@ public class PotionRing
 		    	event.accept(PRItemsRegistry.ring_of_shrinking);
 		    	event.accept(PRItemsRegistry.ring_of_widening);
 		    	event.accept(PRItemsRegistry.ring_of_thinning);
-			}*/
+			}
 	    }
 	}
 }
