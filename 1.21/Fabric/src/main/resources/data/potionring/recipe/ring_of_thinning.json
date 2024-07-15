@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " g ",
+        "g#g",
+        " g "
+    ],
+    "key": {
+        "#": {
+            "item": "potionring:ring_of_shrinking"
+        },
+        "g": {
+            "item": "minecraft:fermented_spider_eye"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "potionring:ring_of_thinning"
+    },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "sizeshiftingpotions"
+    }
+  ]
+}
