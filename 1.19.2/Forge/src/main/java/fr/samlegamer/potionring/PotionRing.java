@@ -32,7 +32,6 @@ public class PotionRing
 	public PotionRing()
 	{
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		PRItemsRegistry.ITEMS_REGISTRY.register(bus);
 		PRItemsRegistry.addons();
