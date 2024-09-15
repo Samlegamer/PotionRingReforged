@@ -8,17 +8,11 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
 
 public class PotionRingItem extends TrinketItem
 {
 	private final EnumEffectTypes effects;
-	private StatusEffect GROWING = Registries.STATUS_EFFECT.get(Identifier.of("sizeshiftingpotions", "growing"));
-	private StatusEffect SHRINKING = Registries.STATUS_EFFECT.get(Identifier.of("sizeshiftingpotions", "shrinking"));
-	private StatusEffect WIDENING = Registries.STATUS_EFFECT.get(Identifier.of("sizeshiftingpotions", "widening"));
-	private StatusEffect THINNING = Registries.STATUS_EFFECT.get(Identifier.of("sizeshiftingpotions", "thinning"));
 
 	public PotionRingItem(Settings settings, EnumEffectTypes eff)
 	{
@@ -57,16 +51,16 @@ public class PotionRingItem extends TrinketItem
 				reloadEffect(livingEntity, StatusEffects.REGENERATION);
 				break;
 			case GROWING:
-				reloadEffect(livingEntity, RegistryEntry.of(GROWING));
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.GROWING);
 				break;
 			case SHRINKING:
-				reloadEffect(livingEntity, RegistryEntry.of(SHRINKING));
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.SHRINKING);
 				break;
 			case WIDENING:
-				reloadEffect(livingEntity, RegistryEntry.of(WIDENING));
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.WIDENING);
 				break;
 			case THINNING:
-				reloadEffect(livingEntity, RegistryEntry.of(THINNING));
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.THINNING);
 				break;
 			case NONE:
 				break;
@@ -97,16 +91,16 @@ public class PotionRingItem extends TrinketItem
 				AddEffect(livingEntity, StatusEffects.REGENERATION);
 				break;
 			case GROWING:
-				AddEffect(livingEntity, RegistryEntry.of(GROWING));
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.GROWING);
 				break;
 			case SHRINKING:
-				AddEffect(livingEntity, RegistryEntry.of(SHRINKING));
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.SHRINKING);
 				break;
 			case WIDENING:
-				AddEffect(livingEntity, RegistryEntry.of(WIDENING));
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.WIDENING);
 				break;
 			case THINNING:
-				AddEffect(livingEntity, RegistryEntry.of(THINNING));
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.THINNING);
 				break;
 			case NONE:
 				break;
@@ -137,16 +131,16 @@ public class PotionRingItem extends TrinketItem
 				DeleteEffect(livingEntity, StatusEffects.REGENERATION);
 				break;
 			case GROWING:
-				DeleteEffect(livingEntity, RegistryEntry.of(GROWING));
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.GROWING);
 				break;
 			case SHRINKING:
-				DeleteEffect(livingEntity, RegistryEntry.of(SHRINKING));
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.SHRINKING);
 				break;
 			case WIDENING:
-				DeleteEffect(livingEntity, RegistryEntry.of(WIDENING));
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.WIDENING);
 				break;
 			case THINNING:
-				DeleteEffect(livingEntity, RegistryEntry.of(THINNING));
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.THINNING);
 				break;
 			case NONE:
 				break;

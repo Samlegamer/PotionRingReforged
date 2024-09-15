@@ -8,17 +8,11 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
 
 public class PotionRingItem extends TrinketItem
 {
 	private final EnumEffectTypes effects;
-	private StatusEffect GROWING = Registries.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "growing"));
-	private StatusEffect SHRINKING = Registries.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "shrinking"));
-	private StatusEffect WIDENING = Registries.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "widening"));
-	private StatusEffect THINNING = Registries.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "thinning"));
-
+	
 	public PotionRingItem(Settings settings, EnumEffectTypes eff)
 	{
 		super(settings);
@@ -28,17 +22,12 @@ public class PotionRingItem extends TrinketItem
 	@Override
 	public boolean hasGlint(ItemStack stack)
 	{
-		if(effects != EnumEffectTypes.NONE)
-		{
-			return true;
-		}
-		return false;
+		return effects != EnumEffectTypes.NONE;
 	}
 	
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity livingEntity)
 	{
-
 		switch(effects)
 		{
 			case STRENGTH:
@@ -60,16 +49,16 @@ public class PotionRingItem extends TrinketItem
 				reloadEffect(livingEntity, StatusEffects.REGENERATION);
 				break;
 			case GROWING:
-				reloadEffect(livingEntity, GROWING);
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.GROWING);
 				break;
 			case SHRINKING:
-				reloadEffect(livingEntity, SHRINKING);
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.SHRINKING);
 				break;
 			case WIDENING:
-				reloadEffect(livingEntity, WIDENING);
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.WIDENING);
 				break;
 			case THINNING:
-				reloadEffect(livingEntity, THINNING);
+				reloadEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.THINNING);
 				break;
 			case NONE:
 				break;
@@ -100,16 +89,16 @@ public class PotionRingItem extends TrinketItem
 				AddEffect(livingEntity, StatusEffects.REGENERATION);
 				break;
 			case GROWING:
-				AddEffect(livingEntity, GROWING);
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.GROWING);
 				break;
 			case SHRINKING:
-				AddEffect(livingEntity, SHRINKING);
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.SHRINKING);
 				break;
 			case WIDENING:
-				AddEffect(livingEntity, WIDENING);
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.WIDENING);
 				break;
 			case THINNING:
-				AddEffect(livingEntity, THINNING);
+				AddEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.THINNING);
 				break;
 			case NONE:
 				break;
@@ -140,16 +129,16 @@ public class PotionRingItem extends TrinketItem
 				DeleteEffect(livingEntity, StatusEffects.REGENERATION);
 				break;
 			case GROWING:
-				DeleteEffect(livingEntity, GROWING);
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.GROWING);
 				break;
 			case SHRINKING:
-				DeleteEffect(livingEntity, SHRINKING);
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.SHRINKING);
 				break;
 			case WIDENING:
-				DeleteEffect(livingEntity, WIDENING);
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.WIDENING);
 				break;
 			case THINNING:
-				DeleteEffect(livingEntity, THINNING);
+				DeleteEffect(livingEntity, me.ultrusmods.sizeshiftingpotions.register.SizeShiftingPotionsEffects.THINNING);
 				break;
 			case NONE:
 				break;
@@ -163,13 +152,13 @@ public class PotionRingItem extends TrinketItem
 		if(!livingEntity.hasStatusEffect(mbEff))
 		{
 			StatusEffectInstance effectInstance = new StatusEffectInstance(mbEff, 240, 0, false, false);
-            if(livingEntity.getWorld().isClient) effectInstance.getDuration();
+            if(livingEntity.getWorld().isClient()) effectInstance.getDuration();
             	{livingEntity.addStatusEffect(effectInstance);}
 		}
 		else if(TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 2)
 		{
 			StatusEffectInstance effectInstance = new StatusEffectInstance(mbEff, 240, 1, false, false);
-            if(livingEntity.getWorld().isClient) effectInstance.getDuration();
+            if(livingEntity.getWorld().isClient()) effectInstance.getDuration();
             	{livingEntity.addStatusEffect(effectInstance);}
 		}
     }

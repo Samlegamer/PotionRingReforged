@@ -19,6 +19,13 @@ repositories {
 		name = "Ladysnake Libs"
 		url = 'https://maven.ladysnake.org/releases'
 	}
+	
+	maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 loom {
@@ -39,6 +46,8 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "dev.emi:trinkets:3.10.0"
+	
+	modImplementation "curse.maven:size-shifting-potions-447440:5636289"
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	

@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "potionring",
-	"version": "1.20-1.1",
+	"version": "1.20-1.2",
 	"name": "Potion Ring - REFORGED",
 	"description": "A port of the Potion Finger Mod to Minecraft 1.20 [FABRIC/QUILT]!",
 	"authors": [
@@ -23,9 +23,11 @@
 		"fabricloader": ">=0.14.21",
 		"minecraft": "~1.20",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"trinkets": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"another-mod": "*",
+		"sizeshiftingpotions": "*"
 	}
 }
