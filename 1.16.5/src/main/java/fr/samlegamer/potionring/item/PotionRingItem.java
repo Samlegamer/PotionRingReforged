@@ -1,7 +1,6 @@
 package fr.samlegamer.potionring.item;
 
 import fr.samlegamer.potionring.PotionRing;
-import fr.samlegamer.potionring.cfg.TutorialConfig;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -9,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -19,19 +17,19 @@ public class PotionRingItem extends Item implements ICurioItem
 {
 	public final Effect eff;
 	private final boolean isNull;
-	public final boolean config;
+	//public final boolean config;
 
 	//TutorialConfig.example_string.get()
-	public PotionRingItem(Effect effect, boolean config) {
-		super(PotionRing.getConfigFromType(effect) ? new Item.Properties().stacksTo(1).tab(ItemGroup.TAB_BREWING) : new Item.Properties().stacksTo(1));
-		this.config = PotionRing.getConfigFromType(effect);
-		this.eff = this.config ? effect : null;
+	public PotionRingItem(Effect effect, String modLoaded) {
+		super(PotionRing.isLoaded(modLoaded) ? new Item.Properties().stacksTo(1).tab(ItemGroup.TAB_BREWING) : new Item.Properties().stacksTo(1));
+//		this.config = PotionRing.getConfigFromType(effect);
+		this.eff = PotionRing.isLoaded(modLoaded) ? effect : null;
 		this.isNull = effect != null;
 	}
 
 	public PotionRingItem(Effect effect)
 	{
-		this(effect, true);
+		this(effect, "minecraft");
 	}
 
 	@Override

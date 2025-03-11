@@ -1,28 +1,29 @@
 package fr.samlegamer.potionring;
 
-import com.electronwill.nightconfig.core.file.FileConfig;
 import fr.samlegamer.potionring.cfg.*;
-import net.minecraft.client.Minecraft;
+import fr.samlegamer.potionring.client.RingModel;
+import fr.samlegamer.potionring.data.PRRecipes;
+import fr.samlegamer.potionring.data.PRTags;
+import fr.samlegamer.potionring.item.PotionRingItem;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.Effects;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
-
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -47,6 +48,11 @@ public class PotionRing {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		PRItemsRegistry.registryVanillaRings();
 
+		//PRItemsRegistry.registryModdedCustom();
+		//MinecraftForge.EVENT_BUS.addListener(this::onTagsUpdated);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onGatherData);
+
 //		MinecraftForge.EVENT_BUS.register(this);
 
 		log.info("PR bool : " + TutorialConfig.example_string.get().toString());
@@ -56,41 +62,46 @@ public class PotionRing {
 		log.info("Potion Rings - REFORGED is Charged");
 	}
 
-	public static boolean getConfigFromType(Effect effect)
-	{
-		if(effect == Effects.FIRE_RESISTANCE)
-		{
-			return ConfigLoad.enableFireResistanceRing;
-		}
-		else
-		{
-			return true;
+	private void onGatherData(GatherDataEvent event) {
+		DataGenerator generator = event.getGenerator();
+		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+
+		if (event.includeServer()) {
+			generator.addProvider(new PRRecipes(generator));
+			generator.addProvider(new PRTags(generator, null));
 		}
 	}
 
-	/*public void onCommonSetup(FMLCommonSetupEvent event) {
-		PRItemsRegistry.registryVanillaRings();
-		System.out.println("Les anneaux ont été enregistrés après le chargement de la config !");
-	}*/
+	public void onClientSetup(FMLClientSetupEvent event)
+	{
+//		for (PotionRingItem item : PRItemsRegistry.DYNAMIC_ITEMS) {
+//			RingModel.register(item, item.eff::getColor);
+//		}
+	}
+//	public void onTagsUpdated(TagsUpdatedEvent event)
+//	{
+//		final ITag.INamedTag<Item> CURIOS_RING = ItemTags.bind("curios:ring");
+//		event.getTagManager().getItems().getTag(new ResourceLocation("curios", "ring"));
+//		Set<Supplier<Item>> sets = new HashSet<>();
+//		sets.add(()->PRItemsRegistry.RING_OF_FIRE_RESISTANCE.get());
+//		ITag.INamedTag<Item> customTag = ItemTags.createOptional(new ResourceLocation("curios", "ring"), sets);
+//		ItemTags.bind(customTag.getName().toString());
+//	}
 
-	//@SubscribeEvent(priority = EventPriority.HIGHEST)
-//	public static void onLoad(final ModConfig.Loading configEvent)
-//	{
-//		log.info("Config chargée : " + TutorialConfig.example_string.get());
-//		ConfigLoad.enableFireResistanceRing = TutorialConfig.example_string.get();
-//		log.info("PR bool : " + ConfigLoad.enableFireResistanceRing);
-//
-//	}
-//
-//	//@SubscribeEvent(priority = EventPriority.HIGHEST)
-//	public static void onFileChange(final ModConfig.Reloading configEvent)
-//	{
-//		log.info("Config rechargée !");
-//		ConfigLoad.enableFireResistanceRing = TutorialConfig.example_string.get();
-//		log.info("PR bool : " + ConfigLoad.enableFireResistanceRing);
-//
-//
-//	}
+	public static Item getItemFromConfig(String mod, String name)
+	{
+        return ForgeRegistries.ITEMS.getValue(new ResourceLocation(mod, name));
+	}
+
+	public static Effect getEffectFromConfig(String mod, String name)
+	{
+		return ForgeRegistries.POTIONS.getValue(new ResourceLocation(mod, name));
+	}
+
+	public static boolean isLoaded(String mod)
+	{
+		return ModList.get().isLoaded(mod);
+	}
 
 	private void enqueueIMC(final InterModEnqueueEvent event)
 	{
@@ -104,7 +115,7 @@ public class PotionRing {
 			for (SlotTypePreset slot : slots) {
 				SlotTypeMessage.Builder builder = slot.getMessageBuilder();
 				if (slot == SlotTypePreset.RING) {
-					builder.size(ConfigLoad.numberOfRing);
+					builder.size(TutorialConfig.example_integer.get());
 				}
 				builders.add(builder);
 			}
