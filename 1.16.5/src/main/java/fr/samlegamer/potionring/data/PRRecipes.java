@@ -8,6 +8,7 @@ import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Consumer;
 
@@ -58,7 +59,7 @@ public class PRRecipes extends RecipeProvider
         ringsSpecial(consumer, PRItemsRegistry.RING_OF_UNLUCK.get(), Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_LUCK.get());
         rings(consumer, PRItemsRegistry.RING_OF_SLOW_FALLING.get(), Items.PHANTOM_MEMBRANE);
         rings(consumer, PRItemsRegistry.RING_OF_CONDUIT_POWER.get(), Items.CONDUIT);
-        rings(consumer, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), Items.TRIDENT);
+        rings(consumer, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), Items.HEART_OF_THE_SEA);
     }
 
     public static void rings(Consumer<IFinishedRecipe> consumer, IItemProvider result, IItemProvider ingredient) {
@@ -81,7 +82,6 @@ public class PRRecipes extends RecipeProvider
                 .pattern("#R#")
                 .pattern(" # ")
                 .group("rings")
-                .unlockedBy("has_potion_ring", has(PRItemsRegistry.POTION_RING.get()))
-                .save(consumer);
+                .unlockedBy("has_potion_ring", has(PRItemsRegistry.POTION_RING.get())).save(consumer);
     }
 }

@@ -1,25 +1,25 @@
 package fr.samlegamer.potionring.data;
 
+import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
+import fr.samlegamer.potionring.item.PRTagsItemRegistry;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+import javax.annotation.Nullable;
 
 public class PRTags extends ItemTagsProvider
 {
-    public PRTags(DataGenerator p_i232552_1_, BlockTagsProvider p_i232552_2_) {
-        super(p_i232552_1_, p_i232552_2_);
+    public PRTags(DataGenerator p_i232552_1_, @Nullable ExistingFileHelper p_i244820_3_) {
+        super(p_i232552_1_, new PRBlockTags(p_i232552_1_, p_i244820_3_), PotionRing.MODID, p_i244820_3_);
     }
 
     @Override
     protected void addTags()
     {
-        ITag.INamedTag<Item> curiosRingTag = ItemTags.bind("curios:ring");
-
-        tag(curiosRingTag).add(PRItemsRegistry.POTION_RING.get(),
+        this.tag(PRTagsItemRegistry.POTION_RINGS).add(PRItemsRegistry.POTION_RING.get(),
                 PRItemsRegistry.RING_OF_REGENERATION.get(),
                 PRItemsRegistry.RING_OF_HASTE.get(),
                 PRItemsRegistry.RING_OF_JUMP_BOOST.get(),
@@ -48,5 +48,16 @@ public class PRTags extends ItemTagsProvider
                 PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get()
         );
 
+    }
+
+    static class PRBlockTags extends BlockTagsProvider
+    {
+        public PRBlockTags(DataGenerator p_i48256_1_, @Nullable ExistingFileHelper p_i244820_3_) {
+            super(p_i48256_1_, PotionRing.MODID, p_i244820_3_);
+        }
+
+        @Override
+        protected void addTags() {
+        }
     }
 }

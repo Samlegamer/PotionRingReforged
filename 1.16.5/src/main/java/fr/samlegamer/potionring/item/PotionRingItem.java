@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -15,16 +16,17 @@ import javax.annotation.Nonnull;
 
 public class PotionRingItem extends Item implements ICurioItem
 {
-	public final Effect eff;
+	public Effect eff;
 	private final boolean isNull;
-	//public final boolean config;
 
-	//TutorialConfig.example_string.get()
 	public PotionRingItem(Effect effect, String modLoaded) {
 		super(PotionRing.isLoaded(modLoaded) ? new Item.Properties().stacksTo(1).tab(ItemGroup.TAB_BREWING) : new Item.Properties().stacksTo(1));
-//		this.config = PotionRing.getConfigFromType(effect);
 		this.eff = PotionRing.isLoaded(modLoaded) ? effect : null;
 		this.isNull = effect != null;
+	}
+
+	public void setEffect(Effect effect) {
+		this.eff = effect;
 	}
 
 	public PotionRingItem(Effect effect)
@@ -77,14 +79,14 @@ public class PotionRingItem extends Item implements ICurioItem
     
     private void AddEffect(LivingEntity livingEntity, Effect mbEff)
     {
-		EffectInstance effectInstance = new EffectInstance(mbEff, 240, CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() - 1, true, true);
+		EffectInstance effectInstance = new EffectInstance(mbEff, mbEff == Effects.NIGHT_VISION ? 500 : 240, CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() - 1, true, true);
 		livingEntity.addEffect(effectInstance);
     }
     
     private void reloadEffect(LivingEntity livingEntity, Effect mbEff)
 	{
-    	int baseDuration = 240;
-		int minDuration = 100;
+    	int baseDuration = mbEff == Effects.NIGHT_VISION ? 500 : 240;
+		int minDuration = mbEff == Effects.NIGHT_VISION ? 240 : 100;
 
 	    if (livingEntity.hasEffect(mbEff)) {
 	        EffectInstance currentEffect = livingEntity.getEffect(mbEff);

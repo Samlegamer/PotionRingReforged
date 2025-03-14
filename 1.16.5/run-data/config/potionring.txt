@@ -1,0 +1,2 @@
+examplemod:example_effect
+examplemod:another_effect

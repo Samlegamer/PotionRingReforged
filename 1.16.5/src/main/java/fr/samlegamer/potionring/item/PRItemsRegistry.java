@@ -1,21 +1,31 @@
 package fr.samlegamer.potionring.item;
 
+import com.google.common.collect.Lists;
 import fr.samlegamer.potionring.PotionRing;
-import fr.samlegamer.potionring.cfg.TutorialConfig;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 public class PRItemsRegistry
 {
 	public static final DeferredRegister<Item> ITEMS_REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, PotionRing.MODID);
-	public static final List<PotionRingItem> DYNAMIC_ITEMS = new ArrayList<>();
 
 	public static final RegistryObject<PotionRingItem> POTION_RING = ITEMS_REGISTRY.register("potion_ring", () -> new PotionRingItem(null));
 	public static final RegistryObject<PotionRingItem> RING_OF_REGENERATION = ITEMS_REGISTRY.register("ring_of_regeneration", () -> new PotionRingItem(Effects.REGENERATION));
@@ -55,23 +65,78 @@ public class PRItemsRegistry
 		RING_OF_DOLPHIN_GRACE = ITEMS_REGISTRY.register("ring_of_dolphins_grace", () -> new PotionRingItem(Effects.DOLPHINS_GRACE));
 	}
 
-	public static void registryModdedCustom()
+	public static List<?> createNewFileOrLearn(boolean returnColor)
 	{
-//		List<String> list = TutorialConfig.exampleList.get();
-//
-//		if(!list.isEmpty()) {
-//            for (String s : list) {
-//                String[] parts = s.split(":");
-//                if (parts.length == 2) {
-//                    final String mod = parts[0];
-//                    final String id = parts[1];
-//                    final Effect effect = PotionRing.getEffectFromConfig(mod, id);
-//
-//                    final RegistryObject<PotionRingItem> RING_BASE_POTION = ITEMS_REGISTRY.register
-//                            ("ring_of_" + id, () -> new PotionRingItem(effect, mod));
-//					DYNAMIC_ITEMS.add(RING_BASE_POTION.get());
-//                }
-//            }
-//		}
+		Path file = Paths.get(FMLPaths.CONFIGDIR.get().toString(), "potionring.txt");
+
+		if (!Files.exists(file))
+		{
+			try(BufferedWriter bufferedWriter = Files.newBufferedWriter(file, StandardCharsets.UTF_8))
+			{
+				bufferedWriter.write("examplemod:example_effect#15182205");
+				bufferedWriter.newLine();
+				bufferedWriter.write("examplemod:another_effect#12207722");
+
+				Files.createFile(file);
+			}
+			catch (IOException e)
+			{
+				PotionRing.log.warn("Error while creating potionring.txt");
+			}
+		}
+
+		List<String> lines = Lists.newArrayList();
+		List<Integer> colors = Lists.newArrayList();
+
+		try(BufferedReader bufferedReader = Files.newBufferedReader(file, StandardCharsets.UTF_8))
+		{
+			for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine())
+			{
+				String[] parts = line.split("#");
+				if (parts.length == 2) {
+					final int color = Integer.parseInt(parts[1]);
+					final String modAndId = parts[0];
+
+					colors.add(color);
+					lines.add(modAndId);
+				}
+			}
+			//lines = bufferedReader.lines().collect(Collectors.toList());
+		}
+		catch (IOException e)
+		{
+			PotionRing.log.warn("Error reading potionring.txt");
+		}
+
+		if(returnColor)
+		{
+			return colors;
+		}
+
+		return lines;
+	}
+
+	public static void registryModdedCustom(IEventBus bus)
+	{
+        final DeferredRegister<Item> IT = DeferredRegister.create(ForgeRegistries.ITEMS, PotionRing.MODID);
+
+		List<String> list = (List<String>) createNewFileOrLearn(false);
+		List<Integer> colors = (List<Integer>) createNewFileOrLearn(true);
+
+		if(!list.isEmpty()) {
+			for (int i = 0; i < list.size(); i++) {
+				String[] parts = list.get(i).split(":");
+				if (parts.length == 2) {
+					final String mod = parts[0];
+					final String id = parts[1];
+					final int color = colors.get(i);
+
+                    final RegistryObject<PotionRingItemModded> RING_BASE_POTION = IT.register
+                            ("ring_of_" + id, () -> new PotionRingItemModded(mod, id, color));
+				}
+			}
+		}
+
+        IT.register(bus);
 	}
 }

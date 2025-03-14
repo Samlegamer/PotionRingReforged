@@ -1,103 +1,18 @@
-[11mars2025 22:32:26.641] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--mod, potionring, --all, --output, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\generated\resources, --existing, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\main\resources, --gameDir, ., --launchTarget, fmluserdevdata, --fml.mcpVersion, 20210115.111550, --fml.mcVersion, 1.16.5, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 36.2.42, --assetIndex, 1.16, --assetsDir, C:\Users\Samle\.gradle\caches\forge_gradle\assets]
-[11mars2025 22:32:26.641] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 8.1.3+8.1.3+main-8.1.x.c94d18ec starting: java version 1.8.0_322 by Temurin
-[11mars2025 22:32:26.907] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
-[11mars2025 22:32:26.938] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.4 Source=file:/C:/Users/Samle/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4/4ec7d77d9ab32596ca0b78bb123956734767e3a/mixin-0.8.4.jar Service=ModLauncher Env=CLIENT
-[11mars2025 22:32:27.844] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevdata' with arguments [--gameDir, ., --assetsDir, C:\Users\Samle\.gradle\caches\forge_gradle\assets, --mod, potionring, --all, --output, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\generated\resources, --existing, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\main\resources, --assetIndex, 1.16]
-[11mars2025 22:32:27.907] [main/INFO] [net.minecraftforge.fml.DatagenModLoader/]: Initializing Data Gatherer for mods [potionring]
-[11mars2025 22:32:31.012] [modloading-worker-2/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 36.2.42, for MC 1.16.5 with MCP 20210115.111550
-[11mars2025 22:32:31.027] [modloading-worker-2/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v36.2.42 Initialized
-[11mars2025 22:32:31.074] [modloading-worker-4/INFO] [fr.samlegamer.potionring.PotionRing/]: PR bool : false
-[11mars2025 22:32:31.074] [modloading-worker-4/INFO] [fr.samlegamer.potionring.PotionRing/]: Potion Rings - REFORGED is Charged
-[11mars2025 22:32:31.371] [main/ERROR] [net.minecraftforge.fml.javafmlmod.FMLModContainer/]: Exception caught during firing event: null
-	Index: 1
-	Listeners:
-		0: NORMAL
-		1: net.minecraftforge.eventbus.EventBus$$Lambda$2704/483370168@4c53ce60
-java.lang.NullPointerException
-	at net.minecraft.data.ItemTagsProvider.<init>(ItemTagsProvider.java:20)
-	at fr.samlegamer.potionring.data.PRTags.<init>(PRTags.java:14)
-	at fr.samlegamer.potionring.PotionRing.onGatherData(PotionRing.java:71)
-	at net.minecraftforge.eventbus.EventBus.doCastFilter(EventBus.java:247)
-	at net.minecraftforge.eventbus.EventBus.lambda$addListener$11(EventBus.java:239)
-	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:302)
-	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:283)
-	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:106)
-	at net.minecraftforge.fml.ModLoader.lambda$runEventGenerator$33(ModLoader.java:310)
-	at java.util.HashMap.forEach(HashMap.java:1290)
-	at net.minecraftforge.fml.ModList.forEachModContainer(ModList.java:215)
-	at net.minecraftforge.fml.ModLoader.runEventGenerator(ModLoader.java:310)
-	at net.minecraftforge.fml.DatagenModLoader.begin(DatagenModLoader.java:52)
-	at net.minecraft.data.Main.main(Main.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at net.minecraftforge.userdev.FMLUserdevDataLaunchProvider.lambda$launchService$0(FMLUserdevDataLaunchProvider.java:37)
-	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37)
-	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:54)
-	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:72)
-	at cpw.mods.modlauncher.Launcher.run(Launcher.java:82)
-	at cpw.mods.modlauncher.Launcher.main(Launcher.java:66)
-	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:94)
-
-[11mars2025 22:32:31.371] [main/ERROR] [net.minecraftforge.fml.javafmlmod.FMLModContainer/LOADING]: Caught exception during event net.minecraftforge.fml.event.lifecycle.GatherDataEvent@3f04847e dispatch for modid potionring
-java.lang.NullPointerException: null
-	at net.minecraft.data.ItemTagsProvider.<init>(ItemTagsProvider.java:20) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-	at fr.samlegamer.potionring.data.PRTags.<init>(PRTags.java:14) ~[main/:?]
-	at fr.samlegamer.potionring.PotionRing.onGatherData(PotionRing.java:71) ~[main/:?]
-	at net.minecraftforge.eventbus.EventBus.doCastFilter(EventBus.java:247) ~[eventbus-4.0.0.jar:?]
-	at net.minecraftforge.eventbus.EventBus.lambda$addListener$11(EventBus.java:239) ~[eventbus-4.0.0.jar:?]
-	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:302) ~[eventbus-4.0.0.jar:?]
-	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:283) ~[eventbus-4.0.0.jar:?]
-	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:106) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:36.2]
-	at net.minecraftforge.fml.ModLoader.lambda$runEventGenerator$33(ModLoader.java:310) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-	at java.util.HashMap.forEach(HashMap.java:1290) ~[?:1.8.0_322]
-	at net.minecraftforge.fml.ModList.forEachModContainer(ModList.java:215) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-	at net.minecraftforge.fml.ModLoader.runEventGenerator(ModLoader.java:310) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-	at net.minecraftforge.fml.DatagenModLoader.begin(DatagenModLoader.java:52) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-	at net.minecraft.data.Main.main(Main.java:45) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_322]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_322]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_322]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_322]
-	at net.minecraftforge.userdev.FMLUserdevDataLaunchProvider.lambda$launchService$0(FMLUserdevDataLaunchProvider.java:37) ~[forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37) [modlauncher-8.1.3.jar:?]
-	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:54) [modlauncher-8.1.3.jar:?]
-	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:72) [modlauncher-8.1.3.jar:?]
-	at cpw.mods.modlauncher.Launcher.run(Launcher.java:82) [modlauncher-8.1.3.jar:?]
-	at cpw.mods.modlauncher.Launcher.main(Launcher.java:66) [modlauncher-8.1.3.jar:?]
-	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:94) [forge-1.16.5-36.2.42_mapped_official_1.16.5.jar:?]
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:39)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:54)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:72)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.Launcher.run(Launcher.java:82)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.Launcher.main(Launcher.java:66)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:94)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: Caused by: java.lang.reflect.InvocationTargetException
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at java.lang.reflect.Method.invoke(Method.java:498)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at net.minecraftforge.userdev.FMLUserdevDataLaunchProvider.lambda$launchService$0(FMLUserdevDataLaunchProvider.java:37)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	... 5 more
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: Caused by: net.minecraftforge.fml.ModLoadingException: fml.modloading.errorduringevent
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:110)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraftforge.fml.ModLoader.lambda$runEventGenerator$33(ModLoader.java:310)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at java.util.HashMap.forEach(HashMap.java:1290)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraftforge.fml.ModList.forEachModContainer(ModList.java:215)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraftforge.fml.ModLoader.runEventGenerator(ModLoader.java:310)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraftforge.fml.DatagenModLoader.begin(DatagenModLoader.java:52)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraft.data.Main.main(Main.java:45)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	... 11 more
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: Caused by: java.lang.NullPointerException
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at net.minecraft.data.ItemTagsProvider.<init>(ItemTagsProvider.java:20)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at fr.samlegamer.potionring.data.PRTags.<init>(PRTags.java:14)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at fr.samlegamer.potionring.PotionRing.onGatherData(PotionRing.java:71)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at net.minecraftforge.eventbus.EventBus.doCastFilter(EventBus.java:247)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at net.minecraftforge.eventbus.EventBus.lambda$addListener$11(EventBus.java:239)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:302)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:283)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:106)
-[11mars2025 22:32:31.402] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:668]: 	... 17 more
+[13mars2025 19:03:58.029] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--mod, potionring, --all, --output, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\generated\resources, --existing, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\main\resources, --gameDir, ., --launchTarget, fmluserdevdata, --fml.mcpVersion, 20210115.111550, --fml.mcVersion, 1.16.5, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 36.2.42, --assetIndex, 1.16, --assetsDir, C:\Users\Samle\.gradle\caches\forge_gradle\assets]
+[13mars2025 19:03:58.032] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 8.1.3+8.1.3+main-8.1.x.c94d18ec starting: java version 1.8.0_322 by Temurin
+[13mars2025 19:03:58.312] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
+[13mars2025 19:03:58.354] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.4 Source=file:/C:/Users/Samle/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4/4ec7d77d9ab32596ca0b78bb123956734767e3a/mixin-0.8.4.jar Service=ModLauncher Env=CLIENT
+[13mars2025 19:03:59.296] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevdata' with arguments [--gameDir, ., --assetsDir, C:\Users\Samle\.gradle\caches\forge_gradle\assets, --mod, potionring, --all, --output, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\generated\resources, --existing, C:\Users\Samle\Music\Potion Ring REFORGED\PotionRingReforged\1.16.5\src\main\resources, --assetIndex, 1.16]
+[13mars2025 19:03:59.346] [main/INFO] [net.minecraftforge.fml.DatagenModLoader/]: Initializing Data Gatherer for mods [potionring]
+[13mars2025 19:04:02.750] [modloading-worker-2/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 36.2.42, for MC 1.16.5 with MCP 20210115.111550
+[13mars2025 19:04:02.752] [modloading-worker-2/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v36.2.42 Initialized
+[13mars2025 19:04:02.786] [modloading-worker-4/INFO] [fr.samlegamer.potionring.PotionRing/]: Potion Rings - REFORGED is Charged
+[13mars2025 19:04:03.228] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: potionring
+[13mars2025 19:04:03.291] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: potionring finished after 61 ms
+[13mars2025 19:04:03.291] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: en_us
+[13mars2025 19:04:03.297] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: en_us finished after 5 ms
+[13mars2025 19:04:03.297] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[13mars2025 19:04:03.379] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 81 ms
+[13mars2025 19:04:03.379] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Tags
+[13mars2025 19:04:03.385] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Tags finished after 6 ms
+[13mars2025 19:04:03.386] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 157 ms

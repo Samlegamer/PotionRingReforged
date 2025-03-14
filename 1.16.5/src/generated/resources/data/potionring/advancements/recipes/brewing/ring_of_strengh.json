@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "potionring:ring_of_strengh"
+    ]
+  },
+  "criteria": {
+    "has_ring": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "potionring:potion_ring"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "potionring:ring_of_strengh"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ring",
+      "has_the_recipe"
+    ]
+  ]
+}
