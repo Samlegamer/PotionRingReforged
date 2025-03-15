@@ -42,19 +42,28 @@ public class PotionRingItem extends Item implements ICurioItem
 	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
 	{
-		reloadEffect(livingEntity, eff);
+		if(eff != null)
+		{
+			reloadEffect(livingEntity, eff);
+		}
 	}
 	
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack)
 	{
-		AddEffect(slotContext.getWearer(), eff);
+		if(eff != null)
+		{
+			AddEffect(slotContext.getWearer(), eff);
+		}
 	}
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack)
     {
-		DeleteEffect(slotContext.getWearer(), eff);
+		if(eff != null)
+		{
+			DeleteEffect(slotContext.getWearer(), eff);
+		}
     }
     
     private void AddEffect(LivingEntity livingEntity, Effect mbEff)

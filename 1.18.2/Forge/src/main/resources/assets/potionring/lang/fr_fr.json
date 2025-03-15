@@ -1,13 +1,34 @@
 { 
+	
+	
 	"item.potionring.potion_ring": "Anneau de potion",
 	"item.potionring.ring_of_haste": "Anneau de célérité",
-	"item.potionring.ring_of_jump_boost": "Anneau de saut",
+	"item.potionring.ring_of_jump_boost": "Anneau de sauts améliorés",
 	"item.potionring.ring_of_resistance": "Anneau de résistance",
 	"item.potionring.ring_of_speed": "Anneau de vitesse",
 	"item.potionring.ring_of_strengh": "Anneau de force",
 	"item.potionring.ring_of_regeneration": "Anneau de régénération",
-	"item.potionring.ring_of_growing": "Anneau d'agrandissement",
-	"item.potionring.ring_of_shrinking": "Anneau de rétraction",
-	"item.potionring.ring_of_widening": "Anneau d'élargissement",
-	"item.potionring.ring_of_thinning": "Anneau d'amincissement"
+	"item.potionring.ring_of_fire_resistance": "Anneau de résistance au feu",
+	"item.potionring.ring_of_invisibility": "Anneau d'Invisibilité",
+	"item.potionring.ring_of_night_vision": "Anneau de vision nocturne",
+	"item.potionring.ring_of_slow_falling": "Anneau de chute lente",
+	"item.potionring.ring_of_water_breathing": "Anneau de respiration aquatique",
+
+
+	"item.potionring.ring_of_blindness": "Anneau de cécité",
+	"item.potionring.ring_of_conduit_power": "Anneau de force de conduit",
+	"item.potionring.ring_of_dolphins_grace": "Anneau de la grâce du dauphin",
+	"item.potionring.ring_of_glowing": "Anneau de surbrillance",
+	"item.potionring.ring_of_hunger": "Anneau de faim",
+	"item.potionring.ring_of_levitation": "Anneau de lévitation",
+	"item.potionring.ring_of_luck": "Anneau de chance",
+	"item.potionring.ring_of_mining_fatigue": "Anneau de fatigue",
+	"item.potionring.ring_of_nausea": "Anneau de nausée",
+	"item.potionring.ring_of_poison": "Anneau de poison",
+	"item.potionring.ring_of_saturation": "Anneau de saturation",
+	"item.potionring.ring_of_slowness": "Anneau de lenteur",
+	"item.potionring.ring_of_unluck": "Anneau de malchance",
+	"item.potionring.ring_of_weakness": "Anneau de faiblesse",
+	"item.potionring.ring_of_wither": "Anneau de décomposition"
+
 }

@@ -56,7 +56,7 @@ ordering="BEFORE"
 side="BOTH"
 
 [[dependencies.${mod_id}]]
-modId = "curios"
-mandatory = true
-ordering = "BEFORE"
-versionRange = "NONE"
+    modId = "curios"
+    mandatory = true
+    ordering = "BEFORE"
+    versionRange = "NONE"
