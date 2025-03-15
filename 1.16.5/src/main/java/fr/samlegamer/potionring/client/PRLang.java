@@ -3,7 +3,10 @@ package fr.samlegamer.potionring.client;
 import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class PRLang extends LanguageProvider
 {
@@ -41,5 +44,16 @@ public class PRLang extends LanguageProvider
         add(PRItemsRegistry.RING_OF_SLOW_FALLING.get(), "Ring of Slow Falling");
         add(PRItemsRegistry.RING_OF_CONDUIT_POWER.get(), "Ring of Conduit Power");
         add(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), "Ring of Dolphin Grace");
+
+        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
+        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
+
+        if(example_ring != null) {
+            add(example_ring, "Ring of Example Effect");
+        }
+
+        if(another_ring != null) {
+            add(another_ring, "Ring of Another Effect");
+        }
     }
 }

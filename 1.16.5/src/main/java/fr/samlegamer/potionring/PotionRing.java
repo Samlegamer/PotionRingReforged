@@ -1,6 +1,5 @@
 package fr.samlegamer.potionring;
 
-import com.google.common.collect.Lists;
 import fr.samlegamer.potionring.cfg.*;
 import fr.samlegamer.potionring.client.PRLang;
 import fr.samlegamer.potionring.client.PRModels;
@@ -8,28 +7,19 @@ import fr.samlegamer.potionring.data.PRRecipes;
 import fr.samlegamer.potionring.data.PRTags;
 import fr.samlegamer.potionring.item.PRTagsItemRegistry;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
-import net.minecraft.potion.Effect;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
@@ -39,15 +29,13 @@ public class PotionRing
 {
 	public static final String MODID = "potionring";
 	public static final Logger log = LogManager.getLogger();
-	public static List<Integer> EffectsColors = Lists.newArrayList();
-
 
 	public PotionRing()
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RingsConfig.SPEC, "potionring-common.toml");
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onGatherData);
-		//MinecraftForge.EVENT_BUS.register(PREvents.class);
+
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		PRItemsRegistry.ITEMS_REGISTRY.register(bus);
 		PRTagsItemRegistry.registerTags();
@@ -68,25 +56,6 @@ public class PotionRing
 			generator.addProvider(new PRRecipes(generator));
 			generator.addProvider(new PRTags(generator, existingFileHelper));
 		}
-	}
-
-	public static Item getItemFromConfig(String mod, String name)
-	{
-        return ForgeRegistries.ITEMS.getValue(new ResourceLocation(mod, name));
-	}
-
-	public static Effect getEffectFromConfig(String mod, String name)
-	{
-		if(RegistryObject.of(new ResourceLocation(mod, name), ForgeRegistries.POTIONS).isPresent())
-		{
-			return RegistryObject.of(new ResourceLocation(mod, name), ForgeRegistries.POTIONS).get();
-		}
-		return null;
-	}
-
-	public static boolean isLoaded(String mod)
-	{
-		return ModList.get().isLoaded(mod);
 	}
 
 	private void enqueueIMC(final InterModEnqueueEvent event)

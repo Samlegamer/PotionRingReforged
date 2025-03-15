@@ -60,9 +60,3 @@ modId = "curios"
 mandatory = true
 ordering = "BEFORE"
 versionRange = "NONE"
-
-[[dependencies.${mod_id}]]
-modId = "lycanitesmobs"
-mandatory = true
-ordering = "BEFORE"
-versionRange = "NONE"

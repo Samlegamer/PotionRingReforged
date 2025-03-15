@@ -6,10 +6,12 @@ import fr.samlegamer.potionring.item.PotionRingItem;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -52,6 +54,17 @@ public class PRModels extends ItemModelProvider
         addRingModel(PRItemsRegistry.RING_OF_SLOW_FALLING.get());
         addRingModel(PRItemsRegistry.RING_OF_CONDUIT_POWER.get());
         addRingModel(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
+        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
+        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
+
+        if(example_ring != null) {
+            addRingModel(example_ring);
+        }
+
+        if(another_ring != null) {
+            addRingModel(another_ring);
+        }
+
     }
 
     private void addRingModel(@Nonnull Item itemName)

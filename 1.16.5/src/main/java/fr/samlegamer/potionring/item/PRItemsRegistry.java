@@ -2,14 +2,10 @@ package fr.samlegamer.potionring.item;
 
 import com.google.common.collect.Lists;
 import fr.samlegamer.potionring.PotionRing;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effects;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Objects;
 
 public class PRItemsRegistry
 {
@@ -101,7 +96,6 @@ public class PRItemsRegistry
 					lines.add(modAndId);
 				}
 			}
-			//lines = bufferedReader.lines().collect(Collectors.toList());
 		}
 		catch (IOException e)
 		{
@@ -121,20 +115,18 @@ public class PRItemsRegistry
         final DeferredRegister<Item> IT = DeferredRegister.create(ForgeRegistries.ITEMS, PotionRing.MODID);
 
 		List<String> list = (List<String>) createNewFileOrLearn(false);
-		List<Integer> colors = (List<Integer>) createNewFileOrLearn(true);
 
 		if(!list.isEmpty()) {
-			for (int i = 0; i < list.size(); i++) {
-				String[] parts = list.get(i).split(":");
-				if (parts.length == 2) {
-					final String mod = parts[0];
-					final String id = parts[1];
-					final int color = colors.get(i);
+            for (String s : list) {
+                String[] parts = s.split(":");
+                if (parts.length == 2) {
+                    final String mod = parts[0];
+                    final String id = parts[1];
 
                     final RegistryObject<PotionRingItemModded> RING_BASE_POTION = IT.register
-                            ("ring_of_" + id, () -> new PotionRingItemModded(mod, id, color));
-				}
-			}
+                            ("ring_of_" + id, () -> new PotionRingItemModded(mod, id));
+                }
+            }
 		}
 
         IT.register(bus);

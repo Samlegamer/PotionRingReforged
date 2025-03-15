@@ -2,9 +2,7 @@ package fr.samlegamer.potionring;
 
 import fr.samlegamer.potionring.item.PRItemsRegistry;
 import fr.samlegamer.potionring.item.PotionRingItem;
-import fr.samlegamer.potionring.item.PotionRingItemModded;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.api.distmarker.Dist;
@@ -58,18 +56,9 @@ public class PRClient
                 if (parts.length == 2) {
                     final String mod = parts[0];
                     final String id = parts[1];
-                    PotionRing.log.info("Registering " + mod + " " + id);
-                    PotionRing.log.info("Color " + colors.get(i));
-                    Item item = PotionRing.getItemFromConfig(mod, id);
-                    if(item instanceof PotionRingItemModded)
-                    {
-                        PotionRing.log.info("Entrez dans le if Client Item réussis avec comme couleur : " + colors.get(i));
 
-                        Effect eff = Registry.MOB_EFFECT.get(new ResourceLocation(mod, id));
-
-                        PotionRingItemModded modItem = (PotionRingItemModded) item;
-                        setColorToRing(event, modItem, mod, id);
-                    }
+                    Item itemModded = Registry.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_"+id));
+                    setColorToRing(event, itemModded, colors.get(i));
                 }
             }
         }
@@ -88,13 +77,12 @@ public class PRClient
         }
     }
 
-    private static void setColorToRing(ColorHandlerEvent.Item event, PotionRingItemModded item, String mod, String id)
+    private static void setColorToRing(ColorHandlerEvent.Item event, Item item, int color)
     {
         event.getItemColors().register((itemStack, tintIndex) -> {
 
-            Effect eff = Registry.MOB_EFFECT.get(new ResourceLocation(mod, id));
             if (tintIndex == 1) {
-                return eff.getColor();
+                return color;
             }
             return -1;
         }, item);

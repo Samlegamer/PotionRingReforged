@@ -12,5 +12,4 @@ public class PRTagsItemRegistry
 
     public static void registerTags() {
     }
-
 }

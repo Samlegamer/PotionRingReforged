@@ -1,6 +1,5 @@
 package fr.samlegamer.potionring.item;
 
-import fr.samlegamer.potionring.PotionRing;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -16,22 +15,12 @@ import javax.annotation.Nonnull;
 
 public class PotionRingItem extends Item implements ICurioItem
 {
-	public Effect eff;
-	private final boolean isNull;
-
-	public PotionRingItem(Effect effect, String modLoaded) {
-		super(PotionRing.isLoaded(modLoaded) ? new Item.Properties().stacksTo(1).tab(ItemGroup.TAB_BREWING) : new Item.Properties().stacksTo(1));
-		this.eff = PotionRing.isLoaded(modLoaded) ? effect : null;
-		this.isNull = effect != null;
-	}
-
-	public void setEffect(Effect effect) {
-		this.eff = effect;
-	}
+	public final Effect eff;
 
 	public PotionRingItem(Effect effect)
 	{
-		this(effect, "minecraft");
+		super(new Item.Properties().stacksTo(1).tab(ItemGroup.TAB_BREWING));
+		this.eff = effect;
 	}
 
 	@Override
@@ -53,28 +42,19 @@ public class PotionRingItem extends Item implements ICurioItem
 	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
 	{
-		if(isNull)
-		{
-			reloadEffect(livingEntity, eff);
-		}
+		reloadEffect(livingEntity, eff);
 	}
 	
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack)
 	{
-		if(isNull)
-		{
-			AddEffect(slotContext.getWearer(), eff);
-		}
+		AddEffect(slotContext.getWearer(), eff);
 	}
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack)
     {
-		if(isNull)
-		{
-			DeleteEffect(slotContext.getWearer(), eff);
-		}
+		DeleteEffect(slotContext.getWearer(), eff);
     }
     
     private void AddEffect(LivingEntity livingEntity, Effect mbEff)
