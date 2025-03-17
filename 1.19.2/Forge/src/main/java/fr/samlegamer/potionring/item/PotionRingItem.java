@@ -1,206 +1,110 @@
 package fr.samlegamer.potionring.item;
 
-import fr.samlegamer.potionring.PotionRing;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import javax.annotation.Nonnull;
 
 public class PotionRingItem extends Item implements ICurioItem
 {
-	public PRTypes eff;
-	public boolean isFoil;
-	
-	public PotionRingItem(Properties p_41383_, PRTypes effect)
+	public final MobEffect eff;
+
+	public PotionRingItem(MobEffect effect)
 	{
-		super(p_41383_);
+		super(new Properties().stacksTo(1).tab(CreativeModeTab.TAB_BREWING));
 		this.eff = effect;
-		
 	}
-	
-	public boolean isFoil(ItemStack p_77636_1_)
+
+	@Override
+	public boolean isValidRepairItem(@Nonnull ItemStack p_82789_1_, ItemStack p_82789_2_)
 	{
-		if(eff != PRTypes.none)
-		{
-			return true;
-		}
-	    return false;
+        return p_82789_2_.getItem() == Items.GOLD_INGOT;
+    }
+
+	@Override
+	public boolean isRepairable(@Nonnull ItemStack stack) {
+		return true;
 	}
+
+	public boolean isFoil(@Nonnull ItemStack p_77636_1_)
+	{
+        return false;
+    }
 	
 	@Override
-	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
+	public void curioTick(SlotContext slotContext, ItemStack stack)
 	{
-		switch(eff)
+		if(eff != null)
 		{
-		case strength:			
-			reloadEffect(livingEntity, MobEffects.DAMAGE_BOOST);
-			break;
-		case speed:
-			reloadEffect(livingEntity, MobEffects.MOVEMENT_SPEED);
-			break;
-		case resistance:
-			reloadEffect(livingEntity, MobEffects.DAMAGE_RESISTANCE);
-			break;
-		case jump:
-			reloadEffect(livingEntity, MobEffects.JUMP);
-			break;
-		case haste:
-			reloadEffect(livingEntity, MobEffects.DIG_SPEED);
-			break;
-		case regeneration:
-			reloadEffect(livingEntity, MobEffects.REGENERATION);
-			break;
-		case growing:
-			reloadEffect(livingEntity, PotionRing.growing.get());
-			break;
-		case shrinking:
-			reloadEffect(livingEntity, PotionRing.shrinking.get());
-			break;
-		case widening:
-			reloadEffect(livingEntity, PotionRing.widening.get());
-			break;
-		case thinning:
-			reloadEffect(livingEntity, PotionRing.thinning.get());
-			break;
-		case none:
-			break;
+			reloadMobEffect(slotContext.entity(), eff);
 		}
 	}
 	
 	@Override
-	public void onEquip(String identifier, int index, LivingEntity livingEntity, ItemStack stack)
+	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack)
 	{
-		switch(eff)
+		if(eff != null)
 		{
-		case strength:			
-			AddEffect(livingEntity, MobEffects.DAMAGE_BOOST);
-			break;
-		case speed:
-			AddEffect(livingEntity, MobEffects.MOVEMENT_SPEED);
-			break;
-		case resistance:
-			AddEffect(livingEntity, MobEffects.DAMAGE_RESISTANCE);
-			break;
-		case jump:
-			AddEffect(livingEntity, MobEffects.JUMP);
-			break;
-		case haste:
-			AddEffect(livingEntity, MobEffects.DIG_SPEED);
-			break;
-		case regeneration:
-			AddEffect(livingEntity, MobEffects.REGENERATION);
-			break;
-		case growing:
-			AddEffect(livingEntity, PotionRing.growing.get());
-			break;
-		case shrinking:
-			AddEffect(livingEntity, PotionRing.shrinking.get());
-			break;
-		case widening:
-			AddEffect(livingEntity, PotionRing.widening.get());
-			break;
-		case thinning:
-			AddEffect(livingEntity, PotionRing.thinning.get());
-			break;
-		case none:
-			break;
+			AddMobEffect(slotContext.entity(), eff);
 		}
 	}
 
     @Override
-    public boolean canUnequip(String identifier, LivingEntity livingEntity, ItemStack stack)
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack)
     {
-    	switch(eff)
+		if(eff != null)
 		{
-		case strength:
-			DeleteEffect(livingEntity, MobEffects.DAMAGE_BOOST);
-			break;
-		case speed:
-			DeleteEffect(livingEntity, MobEffects.MOVEMENT_SPEED);
-			break;
-		case resistance:
-			DeleteEffect(livingEntity, MobEffects.DAMAGE_RESISTANCE);
-			break;
-		case jump:
-			DeleteEffect(livingEntity, MobEffects.JUMP);
-			break;
-		case haste:
-			DeleteEffect(livingEntity, MobEffects.DIG_SPEED);
-			break;
-		case regeneration:
-			DeleteEffect(livingEntity, MobEffects.REGENERATION);
-			break;
-		case growing:
-			DeleteEffect(livingEntity, PotionRing.growing.get());
-			break;
-		case shrinking:
-			DeleteEffect(livingEntity, PotionRing.shrinking.get());
-			break;
-		case widening:
-			DeleteEffect(livingEntity, PotionRing.widening.get());
-			break;
-		case thinning:
-			DeleteEffect(livingEntity, PotionRing.thinning.get());
-			break;
-		case none:
-			break;
-		}
-    	    	
-    	return eff.toString() != null;
-    }
-    
-    private void AddEffect(LivingEntity livingEntity, MobEffect mbEff)
-    {
-    	if(!livingEntity.hasEffect(mbEff))
-		{
-            MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, 0, false, false);
-            if(livingEntity.level.isClientSide) effectInstance.getDuration();
-            livingEntity.addEffect(effectInstance);
-		}
-		else if(CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 2)
-		{
-			MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, 1, true, false);
-            if(livingEntity.level.isClientSide) effectInstance.getDuration();
-            livingEntity.addEffect(effectInstance);
+			DeleteMobEffect(slotContext.entity(), eff);
 		}
     }
     
-    private void reloadEffect(LivingEntity livingEntity, MobEffect mbEff)
+    private void AddMobEffect(LivingEntity livingEntity, MobEffect mbEff)
+    {
+		MobEffectInstance effectInstance = new MobEffectInstance(mbEff, mbEff == MobEffects.NIGHT_VISION ? 500 : 240, CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() - 1, true, true);
+		livingEntity.addEffect(effectInstance);
+    }
+    
+    private void reloadMobEffect(LivingEntity livingEntity, MobEffect mbEff)
 	{
-    	int baseDuration = 240;
-	    int newDuration1 = baseDuration;
-	    int newDuration2 = baseDuration;
+    	int baseDuration = mbEff == MobEffects.NIGHT_VISION ? 500 : 240;
+		int minDuration = mbEff == MobEffects.NIGHT_VISION ? 240 : 100;
 
 	    if (livingEntity.hasEffect(mbEff)) {
-	    	MobEffectInstance currentEffect = livingEntity.getEffect(mbEff);
-	        int currentDuration = currentEffect.getDuration();
-
-	        if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 1) {
-	            newDuration1 += currentDuration;
-	        } else if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 2) {
-	            newDuration2 += currentDuration;
-	        }
+	        MobEffectInstance currentMobEffect = livingEntity.getEffect(mbEff);
+			if(currentMobEffect != null)
+			{
+				if(currentMobEffect.getDuration() <= minDuration)
+				{
+					currentMobEffect.duration = baseDuration;
+					livingEntity.addEffect(currentMobEffect);
+				}
+			}
 	    }
-
-	    MobEffectInstance effA1 = new MobEffectInstance(mbEff, newDuration1, 0, false, false);
-	    MobEffectInstance effA2 = new MobEffectInstance(mbEff, newDuration2, 1, false, false);
-
-	    if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 1) {
-	        livingEntity.addEffect(effA1);
-	    } else if (CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 2) {
-	        livingEntity.addEffect(effA2);
-	    }
+		else if (!livingEntity.hasEffect(mbEff) && CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() == 1)
+		{
+			MobEffectInstance eff = new MobEffectInstance(mbEff, baseDuration, CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() - 1, true, true);
+			livingEntity.addEffect(eff);
+		}
 	}
     
-    private void DeleteEffect(LivingEntity livingEntity, MobEffect mbEff)
+    private void DeleteMobEffect(LivingEntity livingEntity, MobEffect mbEff)
     {
-    	if(livingEntity.hasEffect(mbEff))
-		{
-			livingEntity.removeEffect(mbEff);
+		MobEffectInstance currentMobEffect = livingEntity.getEffect(mbEff);
+
+		if(currentMobEffect != null) {
+			if (livingEntity.hasEffect(mbEff) && currentMobEffect.getAmplifier() > 0) {
+				currentMobEffect.amplifier = currentMobEffect.amplifier - 1;
+				livingEntity.removeEffect(mbEff);
+				livingEntity.addEffect(currentMobEffect);
+			}
 		}
     }
 }

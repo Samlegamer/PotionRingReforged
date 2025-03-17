@@ -71,8 +71,6 @@ public class PRItemsRegistry
 				bufferedWriter.write("examplemod:example_effect#15182205");
 				bufferedWriter.newLine();
 				bufferedWriter.write("examplemod:another_effect#12207722");
-
-				Files.createFile(file);
 			}
 			catch (IOException e)
 			{
