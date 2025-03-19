@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": {
+      "item": "minecraft:spider_eye"
+    },
+    "R": {
+      "item": "potionring:potion_ring"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "item": "potionring:ring_of_poison"
+  },
+  "show_notification": true
+}

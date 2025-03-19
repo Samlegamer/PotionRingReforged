@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "R": {
+      "item": "potionring:ring_of_night_vision"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "item": "potionring:ring_of_invisibility"
+  },
+  "show_notification": true
+}
