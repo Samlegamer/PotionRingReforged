@@ -2,13 +2,13 @@ package fr.samlegamer.potionring.client;
 
 import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -52,8 +52,8 @@ public class PRModels extends ItemModelProvider
         addRingModel(PRItemsRegistry.RING_OF_CONDUIT_POWER.get());
         addRingModel(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
         addRingModel(PRItemsRegistry.RING_OF_DARKNESS.get());
-        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
-        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
+        Item example_ring = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_example_effect"));
+        Item another_ring = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_another_effect"));
 
         if(example_ring != null) {
             addRingModel(example_ring);
@@ -67,7 +67,7 @@ public class PRModels extends ItemModelProvider
 
     private void addRingModel(@Nonnull Item itemName)
     {
-        String itemId = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(itemName)).getPath();
+        String itemId = Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(itemName)).getPath();
 
         getBuilder(itemId)
                 .parent(model)

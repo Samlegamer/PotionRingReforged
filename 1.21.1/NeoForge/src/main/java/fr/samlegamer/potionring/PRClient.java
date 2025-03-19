@@ -5,13 +5,14 @@ import fr.samlegamer.potionring.item.PotionRingItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = PotionRing.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = PotionRing.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class PRClient
 {
     /* Free to use in another project, convert int color effect to ARGB
@@ -64,7 +65,7 @@ public class PRClient
                     final String mod = parts[0];
                     final String id = parts[1];
 
-                    Item itemModded = BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_"+id));
+                    Item itemModded = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_"+id));
                     setColorToRing(event, itemModded, colors.get(i));
                 }
             }
@@ -75,7 +76,7 @@ public class PRClient
     {
         if(item.eff != null)
         {
-            int colorArgb = rgbToArgb(item.eff.get().getColor());
+            int colorArgb = rgbToArgb(item.eff.value().getColor());
 
             event.register((itemStack, tintIndex) -> {
                 if (tintIndex == 1) {
