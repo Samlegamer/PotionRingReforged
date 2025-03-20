@@ -2,6 +2,7 @@ package fr.samlegamer.potionring.client;
 
 import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -52,17 +53,14 @@ public class PRModels extends ItemModelProvider
         addRingModel(PRItemsRegistry.RING_OF_CONDUIT_POWER.get());
         addRingModel(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
         addRingModel(PRItemsRegistry.RING_OF_DARKNESS.get());
-        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
-        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
 
-        if(example_ring != null) {
-            addRingModel(example_ring);
-        }
+        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_example_effect")));
+        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_another_effect")));
 
-        if(another_ring != null) {
-            addRingModel(another_ring);
-        }
-
+        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_growing")));
+        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_shrinking")));
+        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_thinning")));
+        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_widening")));
     }
 
     private void addRingModel(@Nonnull Item itemName)

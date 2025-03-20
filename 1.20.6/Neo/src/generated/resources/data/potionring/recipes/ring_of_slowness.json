@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "R": {
+      "item": "potionring:ring_of_speed"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "potionring:ring_of_slowness"
+  }
+}

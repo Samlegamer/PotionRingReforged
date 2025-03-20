@@ -7,9 +7,7 @@ import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -21,7 +19,7 @@ import java.util.List;
 
 public class PRItemsRegistry
 {
-	public static final DeferredRegister<Item> ITEMS_REGISTRY = DeferredRegister.createItems(PotionRing.MODID);
+	public static final DeferredRegister.Items ITEMS_REGISTRY = DeferredRegister.createItems(PotionRing.MODID);
 
 	public static final DeferredHolder<Item, PotionRingItem> POTION_RING = ITEMS_REGISTRY.register("potion_ring", () -> new PotionRingItem(null));
 	public static final DeferredHolder<Item, PotionRingItem> RING_OF_REGENERATION = ITEMS_REGISTRY.register("ring_of_regeneration", () -> new PotionRingItem(MobEffects.REGENERATION));
@@ -112,7 +110,20 @@ public class PRItemsRegistry
 
 	public static void registryModdedCustom(IEventBus bus)
 	{
-        final DeferredRegister<Item> IT = DeferredRegister.createItems(PotionRing.MODID);
+        final DeferredRegister.Items IT = DeferredRegister.createItems(PotionRing.MODID);
+
+		// Rings for Size Shifting Potions
+		final DeferredHolder<Item, PotionRingItemModded> RING_OF_GROWING = IT.register
+				("ring_of_growing", () -> new PotionRingItemModded("sizeshiftingpotions", "growing"));
+
+		final DeferredHolder<Item, PotionRingItemModded> RING_OF_SHRINKING = IT.register
+				("ring_of_shrinking", () -> new PotionRingItemModded("sizeshiftingpotions", "shrinking"));
+
+		final DeferredHolder<Item, PotionRingItemModded> RING_OF_THINNING = IT.register
+				("ring_of_thinning", () -> new PotionRingItemModded("sizeshiftingpotions", "thinning"));
+
+		final DeferredHolder<Item, PotionRingItemModded> RING_OF_WIDENING = IT.register
+				("ring_of_widening", () -> new PotionRingItemModded("sizeshiftingpotions", "widening"));
 
 		List<String> list = (List<String>) createNewFileOrLearn(false);
 

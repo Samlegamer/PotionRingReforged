@@ -3,7 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.133'
+    id 'net.neoforged.gradle.userdev' version '7.0.142'
 }
 
 version = mod_version
@@ -11,11 +11,6 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
-    
-    maven {
-    name = "Illusive Soulworks maven"
-    url = "https://maven.theillusivec4.top/"
-  }
 }
 
 base {
@@ -25,7 +20,7 @@ base {
 // Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-//minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
 //minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
 
 // Default run configurations.
@@ -39,6 +34,8 @@ runs {
         // "REGISTRIES": For firing of registry events.
         // "REGISTRYDUMP": For getting the contents of all registries.
         systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'mixin.env.remapRefMap', 'true'
+        systemProperty 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
         // Recommended logging level for the console
         // You can set various levels here.
@@ -85,6 +82,13 @@ configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
 
+repositories {
+    maven {
+        name = "Illusive Soulworks maven"
+        url = "https://maven.theillusivec4.top/"
+    }
+}
+
 dependencies {
     // Specify the version of Minecraft to use.
     // Depending on the plugin applied there are several options. We will assume you applied the userdev plugin as shown above.
@@ -94,9 +98,9 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
     // Compile against only the API artifact
-    compileOnly "top.theillusivec4.curios:curios-neoforge:7.4.3+1.20.4:api"
+    compileOnly "top.theillusivec4.curios:curios-neoforge:8.1.0+1.20.6:api"
     // Use the full Curios API jar at runtime
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:7.4.3+1.20.4"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:8.1.0+1.20.6"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

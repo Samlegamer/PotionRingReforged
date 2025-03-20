@@ -12,7 +12,6 @@ import net.minecraft.world.item.Items;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
 import javax.annotation.Nonnull;
 
 public class PotionRingItemModded extends Item implements ICurioItem
@@ -45,7 +44,7 @@ public class PotionRingItemModded extends Item implements ICurioItem
 	@Override
 	public void curioTick(SlotContext slotContext, ItemStack stack)
 	{
-		MobEffect eff = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name));
+		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name)));
 		if(eff != null)
 		{
 			reloadEffect(slotContext.entity(), eff);
@@ -55,7 +54,7 @@ public class PotionRingItemModded extends Item implements ICurioItem
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack)
 	{
-		MobEffect eff = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name));
+		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name)));
 		if(eff != null)
 		{
 			AddEffect(slotContext.entity(), eff);
@@ -65,29 +64,29 @@ public class PotionRingItemModded extends Item implements ICurioItem
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack)
     {
-		MobEffect eff = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name));
+		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name)));
 		if(eff != null)
 		{
 			DeleteEffect(slotContext.entity(), eff);
 		}
     }
     
-    private void AddEffect(LivingEntity livingEntity, MobEffect mbEff)
+    private void AddEffect(LivingEntity livingEntity, Holder<MobEffect> mbEff)
     {
 		if(CuriosApi.getCuriosInventory(livingEntity).isPresent())
 		{
-			MobEffectInstance effectInstance = new MobEffectInstance(Holder.direct(mbEff), 240, CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() - 1, true, true);
+			MobEffectInstance effectInstance = new MobEffectInstance(mbEff, 240, CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() - 1, true, true);
 			livingEntity.addEffect(effectInstance);
 		}
     }
     
-    private void reloadEffect(LivingEntity livingEntity, MobEffect mbEff)
+    private void reloadEffect(LivingEntity livingEntity, Holder<MobEffect> mbEff)
 	{
     	int baseDuration = 240;
 		int minDuration = 100;
 
-	    if (livingEntity.hasEffect(Holder.direct(mbEff))) {
-	        MobEffectInstance currentEffect = livingEntity.getEffect(Holder.direct(mbEff));
+	    if (livingEntity.hasEffect(mbEff)) {
+	        MobEffectInstance currentEffect = livingEntity.getEffect(mbEff);
 			if(currentEffect != null)
 			{
 				if(currentEffect.getDuration() <= minDuration)
@@ -97,24 +96,24 @@ public class PotionRingItemModded extends Item implements ICurioItem
 				}
 			}
 	    }
-		else if (!livingEntity.hasEffect(Holder.direct(mbEff)) && CuriosApi.getCuriosInventory(livingEntity).isPresent())
+		else if (!livingEntity.hasEffect(mbEff) && CuriosApi.getCuriosInventory(livingEntity).isPresent())
 		{
 			if(CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() == 1)
 			{
-				MobEffectInstance eff = new MobEffectInstance(Holder.direct(mbEff), baseDuration, CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() - 1, true, true);
+				MobEffectInstance eff = new MobEffectInstance(mbEff, baseDuration, CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() - 1, true, true);
 				livingEntity.addEffect(eff);
 			}
 		}
 	}
     
-    private void DeleteEffect(LivingEntity livingEntity, MobEffect mbEff)
+    private void DeleteEffect(LivingEntity livingEntity, Holder<MobEffect> mbEff)
     {
-		MobEffectInstance currentEffect = livingEntity.getEffect(Holder.direct(mbEff));
+		MobEffectInstance currentEffect = livingEntity.getEffect(mbEff);
 
 		if(currentEffect != null) {
-			if (livingEntity.hasEffect(Holder.direct(mbEff)) && currentEffect.getAmplifier() > 0) {
+			if (livingEntity.hasEffect(mbEff) && currentEffect.getAmplifier() > 0) {
 				currentEffect.amplifier = currentEffect.amplifier - 1;
-				livingEntity.removeEffect(Holder.direct(mbEff));
+				livingEntity.removeEffect(mbEff);
 				livingEntity.addEffect(currentEffect);
 			}
 		}

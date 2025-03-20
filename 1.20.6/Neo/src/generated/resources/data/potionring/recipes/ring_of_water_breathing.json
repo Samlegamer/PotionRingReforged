@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": {
+      "item": "minecraft:sponge"
+    },
+    "R": {
+      "item": "potionring:potion_ring"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "potionring:ring_of_water_breathing"
+  }
+}

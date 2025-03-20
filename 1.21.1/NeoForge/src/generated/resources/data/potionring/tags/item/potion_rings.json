@@ -27,6 +27,10 @@
     "potionring:ring_of_slow_falling",
     "potionring:ring_of_conduit_power",
     "potionring:ring_of_dolphins_grace",
-    "potionring:ring_of_darkness"
+    "potionring:ring_of_darkness",
+    "potionring:ring_of_growing",
+    "potionring:ring_of_shrinking",
+    "potionring:ring_of_thinning",
+    "potionring:ring_of_widening"
   ]
 }

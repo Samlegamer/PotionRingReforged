@@ -135,7 +135,9 @@ dependencies {
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.12.1+1.20.1")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.12.1+1.20.1:api")
 
-    runtimeOnly fg.deobf("curse.maven:potionsmaster-356801:4722415")
+    //runtimeOnly fg.deobf("curse.maven:size-shifting-potions-447440:5357580")
+    //runtimeOnly fg.deobf("curse.maven:pehkui-319596:5393101")
+    //runtimeOnly fg.deobf("curse.maven:potionsmaster-356801:4722415")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

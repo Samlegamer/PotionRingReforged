@@ -114,6 +114,19 @@ public class PRItemsRegistry
 	{
         final DeferredRegister<Item> IT = DeferredRegister.create(ForgeRegistries.ITEMS, PotionRing.MODID);
 
+		// Rings for Size Shifting Potions
+		final RegistryObject<PotionRingItemModded> RING_OF_GROWING = IT.register
+				("ring_of_growing", () -> new PotionRingItemModded("sizeshiftingpotions", "growing"));
+
+		final RegistryObject<PotionRingItemModded> RING_OF_SHRINKING = IT.register
+				("ring_of_shrinking", () -> new PotionRingItemModded("sizeshiftingpotions", "shrinking"));
+
+		final RegistryObject<PotionRingItemModded> RING_OF_THINNING = IT.register
+				("ring_of_thinning", () -> new PotionRingItemModded("sizeshiftingpotions", "thinning"));
+
+		final RegistryObject<PotionRingItemModded> RING_OF_WIDENING = IT.register
+				("ring_of_widening", () -> new PotionRingItemModded("sizeshiftingpotions", "widening"));
+
 		List<String> list = (List<String>) createNewFileOrLearn(false);
 
 		if(!list.isEmpty()) {

@@ -55,6 +55,11 @@ public class PRClient
         setColorToRing(event, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
         setColorToRing(event, PRItemsRegistry.RING_OF_DARKNESS.get());
 
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_growing")), 14289002);
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_shrinking")), 13411432);
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_thinning")), 14922751);
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_widening")), 11796418);
+
         List<String> list = (List<String>) PRItemsRegistry.createNewFileOrLearn(false);
         List<Integer> colors = (List<Integer>) PRItemsRegistry.createNewFileOrLearn(true);
 

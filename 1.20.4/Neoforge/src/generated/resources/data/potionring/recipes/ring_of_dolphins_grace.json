@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": {
+      "item": "minecraft:heart_of_the_sea"
+    },
+    "R": {
+      "item": "potionring:potion_ring"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "item": "potionring:ring_of_dolphins_grace"
+  }
+}

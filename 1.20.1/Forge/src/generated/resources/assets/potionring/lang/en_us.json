@@ -8,6 +8,7 @@
   "item.potionring.ring_of_example_effect": "Ring of Example Effect",
   "item.potionring.ring_of_fire_resistance": "Ring of Fire Resistance",
   "item.potionring.ring_of_glowing": "Ring of Glowing",
+  "item.potionring.ring_of_growing": "Ring of Growing",
   "item.potionring.ring_of_haste": "Ring of Haste",
   "item.potionring.ring_of_hunger": "Ring of Hunger",
   "item.potionring.ring_of_invisibility": "Ring of Invisibility",
@@ -21,12 +22,15 @@
   "item.potionring.ring_of_regeneration": "Ring of Regeneration",
   "item.potionring.ring_of_resistance": "Ring of Resistance",
   "item.potionring.ring_of_saturation": "Ring of Saturation",
+  "item.potionring.ring_of_shrinking": "Ring of Shrinking",
   "item.potionring.ring_of_slow_falling": "Ring of Slow Falling",
   "item.potionring.ring_of_slowness": "Ring of Slowness",
   "item.potionring.ring_of_speed": "Ring of Speed",
   "item.potionring.ring_of_strengh": "Ring of Strength",
+  "item.potionring.ring_of_thinning": "Ring of Thinning",
   "item.potionring.ring_of_unluck": "Ring of Bad Luck",
   "item.potionring.ring_of_water_breathing": "Ring of Water Breathing",
   "item.potionring.ring_of_weakness": "Ring of Weakness",
+  "item.potionring.ring_of_widening": "Ring of Widening",
   "item.potionring.ring_of_wither": "Ring of Wither"
 }

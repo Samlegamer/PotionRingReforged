@@ -1,15 +1,20 @@
 package fr.samlegamer.potionring.data;
 
+import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.CompletableFuture;
 
@@ -62,6 +67,19 @@ public class PRRecipes extends RecipeProvider
         rings(consumer, PRItemsRegistry.RING_OF_CONDUIT_POWER.get(), Items.CONDUIT);
         rings(consumer, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), Items.HEART_OF_THE_SEA);
         rings(consumer, PRItemsRegistry.RING_OF_DARKNESS.get(), Items.ECHO_SHARD);
+
+        ringsLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_growing")),
+                Items.CRIMSON_FUNGUS, "sizeshiftingpotions");
+
+        ringsLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_shrinking")),
+                Items.WARPED_FUNGUS, "sizeshiftingpotions");
+
+        ringsSpecialLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_thinning")),
+                Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_shrinking")), "sizeshiftingpotions");
+
+        ringsSpecialLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_widening")),
+                Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_growing")), "sizeshiftingpotions");
+
     }
 
     public static void rings(RecipeOutput consumer, ItemLike result, ItemLike ingredient) {
@@ -85,5 +103,29 @@ public class PRRecipes extends RecipeProvider
                 .pattern(" # ")
                 .group("rings")
                 .unlockedBy("has_potion_ring", has(PRItemsRegistry.POTION_RING.get())).save(consumer);
+    }
+
+    public static void ringsLoaded(RecipeOutput consumer, ItemLike result, ItemLike ingredient, String loaded) {
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, result)
+                .define('#', ingredient)
+                .define('R', PRItemsRegistry.POTION_RING.get())
+                .pattern(" # ")
+                .pattern("#R#")
+                .pattern(" # ")
+                .group("rings")
+                .unlockedBy("has_ring", has(PRItemsRegistry.POTION_RING.get()))
+                .save(consumer.withConditions(new ModLoadedCondition(loaded)));
+    }
+
+    public static void ringsSpecialLoaded(RecipeOutput consumer, ItemLike result, ItemLike ingredient1, ItemLike ingredient2, String loaded) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, result)
+                .define('#', ingredient1)
+                .define('R', ingredient2)
+                .pattern(" # ")
+                .pattern("#R#")
+                .pattern(" # ")
+                .group("rings")
+                .unlockedBy("has_potion_ring", has(PRItemsRegistry.POTION_RING.get())).save(consumer.withConditions(new ModLoadedCondition(loaded)));
     }
 }

@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "sizeshiftingpotions"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "group": "rings",
+        "key": {
+          "#": {
+            "item": "minecraft:fermented_spider_eye"
+          },
+          "R": {
+            "item": "potionring:ring_of_growing"
+          }
+        },
+        "pattern": [
+          " # ",
+          "#R#",
+          " # "
+        ],
+        "result": {
+          "item": "potionring:ring_of_widening"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@ package fr.samlegamer.potionring.client;
 
 import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -46,15 +47,13 @@ public class PRLang extends LanguageProvider
         add(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), "Ring of Dolphin Grace");
         add(PRItemsRegistry.RING_OF_DARKNESS.get(), "Ring of Darkness");
 
-        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
-        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
+        add(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_example_effect")), "Ring of Example Effect");
+        add(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_another_effect")), "Ring of Another Effect");
 
-        if(example_ring != null) {
-            add(example_ring, "Ring of Example Effect");
-        }
+        add(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_growing")), "Ring of Growing");
+        add(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_shrinking")), "Ring of Shrinking");
+        add(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_thinning")), "Ring of Thinning");
+        add(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_widening")), "Ring of Widening");
 
-        if(another_ring != null) {
-            add(another_ring, "Ring of Another Effect");
-        }
     }
 }
