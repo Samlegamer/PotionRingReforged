@@ -6,7 +6,9 @@ import fr.samlegamer.potionring.item.PRTagsItemRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
@@ -46,7 +48,11 @@ public class PRTags extends ItemTagsProvider
                 PRItemsRegistry.RING_OF_SLOW_FALLING.get(),
                 PRItemsRegistry.RING_OF_CONDUIT_POWER.get(),
                 PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(),
-                PRItemsRegistry.RING_OF_DARKNESS.get()
+                PRItemsRegistry.RING_OF_DARKNESS.get(),
+                ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_growing")),
+                ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_shrinking")),
+                ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_thinning")),
+                ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_widening"))
         );
 
     }

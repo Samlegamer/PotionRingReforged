@@ -2,6 +2,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = '1.19.3-2.0'
@@ -28,7 +29,11 @@ minecraft {
     // Simply re-run your setup task after changing the mappings to update your workspace.
     mappings channel: 'official', version: '1.19.3'
 
-     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
+    //enableTransitiveAccessWideners = true
+
+
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -50,6 +55,8 @@ minecraft {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'potionring'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.buildDir}/createSrgToMcp/output.srg"
 
             mods {
                 potionring {
@@ -66,6 +73,8 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             property 'forge.enabledGameTestNamespaces', 'potionring'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.buildDir}/createSrgToMcp/output.srg"
 
             mods {
                 potionring {
@@ -85,6 +94,8 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             property 'forge.enabledGameTestNamespaces', 'potionring'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.buildDir}/createSrgToMcp/output.srg"
 
             mods {
                 potionring {
@@ -102,6 +113,8 @@ minecraft {
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', 'potionring', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.buildDir}/createSrgToMcp/output.srg"
 
             mods {
                 potionring {
@@ -119,6 +132,12 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -129,8 +148,12 @@ dependencies {
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.3-5.1.1.2")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.3-5.1.1.2:api")
 
+    //runtimeOnly fg.deobf("curse.maven:size-shifting-potions-447440:4352355")
+    //runtimeOnly fg.deobf("curse.maven:pehkui-319596:4684381")
+    //runtimeOnly fg.deobf("curse.maven:midnightlib-488090:4174779")
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // Examples using mod jars from ./libs
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")

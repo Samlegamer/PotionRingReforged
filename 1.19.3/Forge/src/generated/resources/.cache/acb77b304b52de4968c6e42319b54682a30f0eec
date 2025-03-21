@@ -1,4 +1,4 @@
-// 1.19.3	2025-03-17T22:48:24.7608764	Item Models: potionring
+// 1.19.3	2025-03-21T17:05:50.5650887	Item Models: potionring
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/potion_ring.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_another_effect.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_blindness.json
@@ -8,6 +8,7 @@
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_example_effect.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_fire_resistance.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_glowing.json
+681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_growing.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_haste.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_hunger.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_invisibility.json
@@ -21,11 +22,14 @@
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_regeneration.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_resistance.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_saturation.json
+681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_shrinking.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_slowness.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_slow_falling.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_speed.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_strengh.json
+681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_thinning.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_unluck.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_water_breathing.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_weakness.json
+681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_widening.json
 681a04f8c706325d56f0dd659286903984138a96 assets/potionring/models/item/ring_of_wither.json

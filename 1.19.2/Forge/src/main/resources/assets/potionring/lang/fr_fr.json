@@ -12,6 +12,11 @@
 	"item.potionring.ring_of_slow_falling": "Anneau de chute lente",
 	"item.potionring.ring_of_water_breathing": "Anneau de respiration aquatique",
 
+	"item.potionring.ring_of_growing": "Anneau d'agrandissement",
+	"item.potionring.ring_of_shrinking": "Anneau de rétraction",
+	"item.potionring.ring_of_widening": "Anneau d'élargissement",
+	"item.potionring.ring_of_thinning": "Anneau d'amincissement",
+
 	"item.potionring.ring_of_darkness": "Anneau d'Obscurité",
 	"item.potionring.ring_of_blindness": "Anneau de cécité",
 	"item.potionring.ring_of_conduit_power": "Anneau de force de conduit",

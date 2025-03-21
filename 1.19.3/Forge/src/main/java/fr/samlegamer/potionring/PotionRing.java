@@ -66,6 +66,15 @@ public class PotionRing
 			{
 				event.accept(item);
 			}
+
+			if(ModList.get().isLoaded("sizeshiftingpotions"))
+			{
+				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_growing")));
+				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_shrinking")));
+				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_thinning")));
+				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_widening")));
+			}
+
 			if(!list.isEmpty()) {
 
 				for (String s : list) {

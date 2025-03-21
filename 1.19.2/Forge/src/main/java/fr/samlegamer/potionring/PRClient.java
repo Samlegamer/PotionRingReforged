@@ -10,6 +10,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
@@ -47,6 +49,11 @@ public class PRClient
         setColorToRing(event, PRItemsRegistry.RING_OF_CONDUIT_POWER.get());
         setColorToRing(event, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
         setColorToRing(event, PRItemsRegistry.RING_OF_DARKNESS.get());
+
+        setColorToRing(event, ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_growing")), 14289002);
+        setColorToRing(event, ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_shrinking")), 13411432);
+        setColorToRing(event, ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_thinning")), 14922751);
+        setColorToRing(event, ForgeRegistries.ITEMS.getValue(new ResourceLocation(PotionRing.MODID, "ring_of_widening")), 11796418);
 
         List<String> list = (List<String>) PRItemsRegistry.createNewFileOrLearn(false);
         List<Integer> colors = (List<Integer>) PRItemsRegistry.createNewFileOrLearn(true);
