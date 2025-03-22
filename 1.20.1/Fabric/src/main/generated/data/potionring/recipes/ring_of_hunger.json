@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "R": {
+      "item": "potionring:potion_ring"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "item": "potionring:ring_of_hunger"
+  },
+  "show_notification": true
+}

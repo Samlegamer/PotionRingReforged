@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "potionring:ring_of_weakness"
+    ]
+  },
+  "criteria": {
+    "has_potion_ring": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "potionring:potion_ring"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "potionring:ring_of_weakness"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_potion_ring",
+      "has_the_recipe"
+    ]
+  ]
+}

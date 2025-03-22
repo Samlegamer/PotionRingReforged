@@ -1,55 +1,55 @@
 package fr.samlegamer.potionring.client;
 
-import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
-import net.minecraft.data.DataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
-public  class PRLang extends FabricLanguageProvider
+public class PRLang extends FabricLanguageProvider
 {
-    public PRLang(DataGenerator gen) {
-        super(gen, PotionRing.MODID, "en_us");
+    public PRLang(FabricDataGenerator dataGenerator) {
+        super(dataGenerator, "en_us");
     }
 
     @Override
-    protected void addTranslations() {
-        add(PRItemsRegistry.POTION_RING.get(), "Potion Ring");
-        add(PRItemsRegistry.RING_OF_HASTE.get(), "Ring of Haste");
-        add(PRItemsRegistry.RING_OF_JUMP_BOOST.get(), "Ring of Jump Boost");
-        add(PRItemsRegistry.RING_OF_RESISTANCE.get(), "Ring of Resistance");
-        add(PRItemsRegistry.RING_OF_SPEED.get(), "Ring of Speed");
-        add(PRItemsRegistry.RING_OF_STRENGTH.get(), "Ring of Strength");
-        add(PRItemsRegistry.RING_OF_REGENERATION.get(), "Ring of Regeneration");
+    public void generateTranslations(TranslationBuilder translationBuilder)
+    {
+        translationBuilder.add(PRItemsRegistry.POTION_RING, "Potion Ring");
+        translationBuilder.add(PRItemsRegistry.RING_OF_HASTE, "Ring of Haste");
+        translationBuilder.add(PRItemsRegistry.RING_OF_JUMP_BOOST, "Ring of Jump Boost");
+        translationBuilder.add(PRItemsRegistry.RING_OF_RESISTANCE, "Ring of Resistance");
+        translationBuilder.add(PRItemsRegistry.RING_OF_SPEED, "Ring of Speed");
+        translationBuilder.add(PRItemsRegistry.RING_OF_STRENGTH, "Ring of Strength");
+        translationBuilder.add(PRItemsRegistry.RING_OF_REGENERATION, "Ring of Regeneration");
 
-        add(PRItemsRegistry.RING_OF_FIRE_RESISTANCE.get(), "Ring of Fire Resistance");
-        add(PRItemsRegistry.RING_OF_INVISIBILITY.get(), "Ring of Invisibility");
-        add(PRItemsRegistry.RING_OF_SLOWNESS.get(), "Ring of Slowness");
-        add(PRItemsRegistry.RING_OF_MINING_FATIGUE.get(), "Ring of Mining Fatigue");
-        add(PRItemsRegistry.RING_OF_NAUSEA.get(), "Ring of Nausea");
-        add(PRItemsRegistry.RING_OF_BLINDNESS.get(), "Ring of Blindness");
-        add(PRItemsRegistry.RING_OF_HUNGER.get(), "Ring of Hunger");
-        add(PRItemsRegistry.RING_OF_SATURATION.get(), "Ring of Saturation");
-        add(PRItemsRegistry.RING_OF_NIGHT_VISION.get(), "Ring of Night Vision");
-        add(PRItemsRegistry.RING_OF_POISON.get(), "Ring of Poison");
-        add(PRItemsRegistry.RING_OF_WATER_BREATHING.get(), "Ring of Water Breathing");
-        add(PRItemsRegistry.RING_OF_WEAKNESS.get(), "Ring of Weakness");
-        add(PRItemsRegistry.RING_OF_WITHER.get(), "Ring of Wither");
-        add(PRItemsRegistry.RING_OF_GLOWING.get(), "Ring of Glowing");
-        add(PRItemsRegistry.RING_OF_LEVITATION.get(), "Ring of Levitation");
-        add(PRItemsRegistry.RING_OF_LUCK.get(), "Ring of Luck");
-        add(PRItemsRegistry.RING_OF_UNLUCK.get(), "Ring of Bad Luck");
-        add(PRItemsRegistry.RING_OF_SLOW_FALLING.get(), "Ring of Slow Falling");
-        add(PRItemsRegistry.RING_OF_CONDUIT_POWER.get(), "Ring of Conduit Power");
-        add(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), "Ring of Dolphin Grace");
+        translationBuilder.add(PRItemsRegistry.RING_OF_FIRE_RESISTANCE, "Ring of Fire Resistance");
+        translationBuilder.add(PRItemsRegistry.RING_OF_INVISIBILITY, "Ring of Invisibility");
+        translationBuilder.add(PRItemsRegistry.RING_OF_SLOWNESS, "Ring of Slowness");
+        translationBuilder.add(PRItemsRegistry.RING_OF_MINING_FATIGUE, "Ring of Mining Fatigue");
+        translationBuilder.add(PRItemsRegistry.RING_OF_NAUSEA, "Ring of Nausea");
+        translationBuilder.add(PRItemsRegistry.RING_OF_BLINDNESS, "Ring of Blindness");
+        translationBuilder.add(PRItemsRegistry.RING_OF_HUNGER, "Ring of Hunger");
+        translationBuilder.add(PRItemsRegistry.RING_OF_SATURATION, "Ring of Saturation");
+        translationBuilder.add(PRItemsRegistry.RING_OF_NIGHT_VISION, "Ring of Night Vision");
+        translationBuilder.add(PRItemsRegistry.RING_OF_POISON, "Ring of Poison");
+        translationBuilder.add(PRItemsRegistry.RING_OF_WATER_BREATHING, "Ring of Water Breathing");
+        translationBuilder.add(PRItemsRegistry.RING_OF_WEAKNESS, "Ring of Weakness");
+        translationBuilder.add(PRItemsRegistry.RING_OF_WITHER, "Ring of Wither");
+        translationBuilder.add(PRItemsRegistry.RING_OF_GLOWING, "Ring of Glowing");
+        translationBuilder.add(PRItemsRegistry.RING_OF_LEVITATION, "Ring of Levitation");
+        translationBuilder.add(PRItemsRegistry.RING_OF_LUCK, "Ring of Luck");
+        translationBuilder.add(PRItemsRegistry.RING_OF_UNLUCK, "Ring of Bad Luck");
+        translationBuilder.add(PRItemsRegistry.RING_OF_SLOW_FALLING, "Ring of Slow Falling");
+        translationBuilder.add(PRItemsRegistry.RING_OF_CONDUIT_POWER, "Ring of Conduit Power");
+        translationBuilder.add(PRItemsRegistry.RING_OF_DOLPHIN_GRACE, "Ring of Dolphin Grace");
 
-        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
-        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
+        translationBuilder.add(Registry.ITEM.get(new Identifier("potionring", "ring_of_example_effect")), "Ring of Example Effect");
+        translationBuilder.add(Registry.ITEM.get(new Identifier("potionring", "ring_of_another_effect")), "Ring of Another Effect");
 
-        if(example_ring != null) {
-            add(example_ring, "Ring of Example Effect");
-        }
-
-        if(another_ring != null) {
-            add(another_ring, "Ring of Another Effect");
-        }
+        translationBuilder.add(Registry.ITEM.get(new Identifier("potionring", "ring_of_growing")), "Ring of Growing");
+        translationBuilder.add(Registry.ITEM.get(new Identifier("potionring", "ring_of_shrinking")), "Ring of Shrinking");
+        translationBuilder.add(Registry.ITEM.get(new Identifier("potionring", "ring_of_thinning")), "Ring of Thinning");
+        translationBuilder.add(Registry.ITEM.get(new Identifier("potionring", "ring_of_widening")), "Ring of Widening");
     }
 }

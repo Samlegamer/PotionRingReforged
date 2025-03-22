@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -19,13 +19,17 @@ repositories {
 		name = "Ladysnake Libs"
 		url = 'https://maven.ladysnake.org/releases'
 	}
+	maven {
+		url "https://cursemaven.com"
+	}
 }
 
 loom {
-    splitEnvironmentSourceSets()
+	splitEnvironmentSourceSets()
+	accessWidenerPath = file("src/main/resources/potionring.accesswidener")
 
 	mods {
-		"modid" {
+		"template-mod" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
@@ -33,12 +37,26 @@ loom {
 
 }
 
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	minecraft "net.minecraft:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "dev.emi:trinkets:3.9.0"
+
+	modImplementation "org.ladysnake.cardinal-components-api:cardinal-components-base:6.0.0"
+	modImplementation "org.ladysnake.cardinal-components-api:cardinal-components-entity:6.0.0"
+	// Copy the following only if you want to bundle Cardinal Components API as a Jar-in-Jar dependency
+	// (otherwise, you should configure the dependency on Modrinth/Curseforge)
+	include "org.ladysnake.cardinal-components-api:cardinal-components-base:6.0.0"
+	include "org.ladysnake.cardinal-components-api:cardinal-components-entity:6.0.0"
+
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	
@@ -48,7 +66,7 @@ processResources {
 	inputs.property "version", project.version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": inputs.properties.version
 	}
 }
 
@@ -67,8 +85,10 @@ java {
 }
 
 jar {
+	inputs.property "archivesName", project.base.archivesName
+
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
 

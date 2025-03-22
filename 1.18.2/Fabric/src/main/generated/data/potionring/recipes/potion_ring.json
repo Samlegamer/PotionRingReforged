@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rings",
+  "pattern": [
+    "R# ",
+    "# #",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "minecraft:lapis_block"
+    }
+  },
+  "result": {
+    "item": "potionring:potion_ring"
+  }
+}

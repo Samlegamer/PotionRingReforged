@@ -3,61 +3,51 @@ package fr.samlegamer.potionring.data;
 import fr.samlegamer.potionring.PotionRing;
 import fr.samlegamer.potionring.item.PRItemsRegistry;
 import fr.samlegamer.potionring.item.PRTagsItemRegistry;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
-import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Item;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
-import javax.annotation.Nullable;
-
-public class PRTags extends ItemTagsProvider
+public class PRTags extends FabricTagProvider<Item>
 {
-    public PRTags(DataGenerator p_i232552_1_, @Nullable ExistingFileHelper p_i244820_3_) {
-        super(p_i232552_1_, new PRBlockTags(p_i232552_1_, p_i244820_3_), PotionRing.MODID, p_i244820_3_);
+    public PRTags(FabricDataGenerator dataGenerator) {
+        super(dataGenerator, Registry.ITEM, PotionRing.MODID);
     }
 
     @Override
-    protected void addTags()
-    {
-        this.tag(PRTagsItemRegistry.POTION_RINGS).add(PRItemsRegistry.POTION_RING.get(),
-                PRItemsRegistry.RING_OF_REGENERATION.get(),
-                PRItemsRegistry.RING_OF_HASTE.get(),
-                PRItemsRegistry.RING_OF_JUMP_BOOST.get(),
-                PRItemsRegistry.RING_OF_RESISTANCE.get(),
-                PRItemsRegistry.RING_OF_SPEED.get(),
-                PRItemsRegistry.RING_OF_STRENGTH.get(),
-                PRItemsRegistry.RING_OF_FIRE_RESISTANCE.get(),
-                PRItemsRegistry.RING_OF_INVISIBILITY.get(),
-                PRItemsRegistry.RING_OF_SLOWNESS.get(),
-                PRItemsRegistry.RING_OF_MINING_FATIGUE.get(),
-                PRItemsRegistry.RING_OF_NAUSEA.get(),
-                PRItemsRegistry.RING_OF_BLINDNESS.get(),
-                PRItemsRegistry.RING_OF_HUNGER.get(),
-                PRItemsRegistry.RING_OF_NIGHT_VISION.get(),
-                PRItemsRegistry.RING_OF_SATURATION.get(),
-                PRItemsRegistry.RING_OF_POISON.get(),
-                PRItemsRegistry.RING_OF_WATER_BREATHING.get(),
-                PRItemsRegistry.RING_OF_WEAKNESS.get(),
-                PRItemsRegistry.RING_OF_WITHER.get(),
-                PRItemsRegistry.RING_OF_GLOWING.get(),
-                PRItemsRegistry.RING_OF_LEVITATION.get(),
-                PRItemsRegistry.RING_OF_LUCK.get(),
-                PRItemsRegistry.RING_OF_UNLUCK.get(),
-                PRItemsRegistry.RING_OF_SLOW_FALLING.get(),
-                PRItemsRegistry.RING_OF_CONDUIT_POWER.get(),
-                PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get()
+    protected void generateTags() {
+        getOrCreateTagBuilder(PRTagsItemRegistry.POTION_RINGS).add(PRItemsRegistry.POTION_RING,
+                PRItemsRegistry.RING_OF_REGENERATION,
+                PRItemsRegistry.RING_OF_HASTE,
+                PRItemsRegistry.RING_OF_JUMP_BOOST,
+                PRItemsRegistry.RING_OF_RESISTANCE,
+                PRItemsRegistry.RING_OF_SPEED,
+                PRItemsRegistry.RING_OF_STRENGTH,
+                PRItemsRegistry.RING_OF_FIRE_RESISTANCE,
+                PRItemsRegistry.RING_OF_INVISIBILITY,
+                PRItemsRegistry.RING_OF_SLOWNESS,
+                PRItemsRegistry.RING_OF_MINING_FATIGUE,
+                PRItemsRegistry.RING_OF_NAUSEA,
+                PRItemsRegistry.RING_OF_BLINDNESS,
+                PRItemsRegistry.RING_OF_HUNGER,
+                PRItemsRegistry.RING_OF_NIGHT_VISION,
+                PRItemsRegistry.RING_OF_SATURATION,
+                PRItemsRegistry.RING_OF_POISON,
+                PRItemsRegistry.RING_OF_WATER_BREATHING,
+                PRItemsRegistry.RING_OF_WEAKNESS,
+                PRItemsRegistry.RING_OF_WITHER,
+                PRItemsRegistry.RING_OF_GLOWING,
+                PRItemsRegistry.RING_OF_LEVITATION,
+                PRItemsRegistry.RING_OF_LUCK,
+                PRItemsRegistry.RING_OF_UNLUCK,
+                PRItemsRegistry.RING_OF_SLOW_FALLING,
+                PRItemsRegistry.RING_OF_CONDUIT_POWER,
+                PRItemsRegistry.RING_OF_DOLPHIN_GRACE,
+                Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_growing")),
+                Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_shrinking")),
+                Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_thinning")),
+                Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_widening"))
         );
-
-    }
-
-    static class PRBlockTags extends BlockTagsProvider
-    {
-        public PRBlockTags(DataGenerator p_i48256_1_, @Nullable ExistingFileHelper p_i244820_3_) {
-            super(p_i48256_1_, PotionRing.MODID, p_i244820_3_);
-        }
-
-        @Override
-        protected void addTags() {
-        }
     }
 }

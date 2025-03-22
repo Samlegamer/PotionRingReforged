@@ -1,14 +1,14 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
 
 repositories {
 	maven {
@@ -19,35 +19,58 @@ repositories {
 		name = "Ladysnake Libs"
 		url = 'https://maven.ladysnake.org/releases'
 	}
+	maven {
+		url "https://cursemaven.com"
+	}
 }
 
-//fabricApi {
-//	configureDataGeneration {
-//		client = true
-//	}
-//}
+loom {
+	accessWidenerPath = file("src/main/resources/potionring.accesswidener")
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
 
 dependencies {
 	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	minecraft "net.minecraft:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "dev.emi:trinkets:3.3.0"
+	modImplementation "dev.emi:trinkets:3.3.1"
+
+	//modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:4.1.0"
+	//modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:4.1.0"
+
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:4.1.0"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:4.1.0"
+	// Copy the following only if you want to bundle Cardinal Components API as a Jar-in-Jar dependency
+	// (otherwise, you should configure the dependency on Modrinth/Curseforge)
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:4.1.0"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:4.1.0"
+
+
+	//modImplementation "curse.maven:size-shifting-potions-447440:3735634"
+	//modImplementation "curse.maven:pehkui-319596:5419266"
+	//include modApi("com.github.Virtuoel:KanosConfig:0.4.1")
+
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	
 }
 
 processResources {
 	inputs.property "version", project.version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": inputs.properties.version
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
 	it.options.release = 17
 }
 
@@ -56,18 +79,24 @@ java {
 	// if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
+	inputs.property "archivesName", project.base.archivesName
+
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
 
 // configure the maven publication
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
 			from components.java
 		}
 	}

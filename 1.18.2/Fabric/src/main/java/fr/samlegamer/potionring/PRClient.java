@@ -43,6 +43,11 @@ public class PRClient implements ClientModInitializer
         setColorToRing(PRItemsRegistry.RING_OF_CONDUIT_POWER);
         setColorToRing(PRItemsRegistry.RING_OF_DOLPHIN_GRACE);
 
+        setColorToRing(Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_growing")), 14289002);
+        setColorToRing(Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_shrinking")), 13411432);
+        setColorToRing(Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_thinning")), 14922751);
+        setColorToRing(Registry.ITEM.get(new Identifier(PotionRing.MODID, "ring_of_widening")), 11796418);
+
         List<String> list = (List<String>) PRItemsRegistry.createNewFileOrLearn(false);
         List<Integer> colors = (List<Integer>) PRItemsRegistry.createNewFileOrLearn(true);
 

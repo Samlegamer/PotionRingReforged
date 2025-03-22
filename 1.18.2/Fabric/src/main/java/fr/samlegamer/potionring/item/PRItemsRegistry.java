@@ -116,8 +116,22 @@ public class PRItemsRegistry
 		return lines;
 	}
 
+	public static PotionRingItemModded RING_OF_GROWING, RING_OF_SHRINKING, RING_OF_THINNING, RING_OF_WIDENING;
+
 	public static void registryModdedCustom()
 	{
+		// Rings for Size Shifting Potions
+		RING_OF_GROWING = registerPotionRingsModded
+				("ring_of_growing", new PotionRingItemModded("sizeshiftingpotions", "growing"));
+
+		RING_OF_SHRINKING = registerPotionRingsModded
+				("ring_of_shrinking", new PotionRingItemModded("sizeshiftingpotions", "shrinking"));
+
+		RING_OF_THINNING = registerPotionRingsModded
+				("ring_of_thinning", new PotionRingItemModded("sizeshiftingpotions", "thinning"));
+
+		RING_OF_WIDENING = registerPotionRingsModded
+				("ring_of_widening", new PotionRingItemModded("sizeshiftingpotions", "widening"));
 
 		List<String> list = (List<String>) createNewFileOrLearn(false);
 

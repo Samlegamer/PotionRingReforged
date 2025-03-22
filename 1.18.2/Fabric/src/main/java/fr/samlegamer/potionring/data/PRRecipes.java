@@ -1,87 +1,86 @@
 package fr.samlegamer.potionring.data;
 
 import fr.samlegamer.potionring.item.PRItemsRegistry;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
-
-import javax.annotation.ParametersAreNonnullByDefault;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import java.util.function.Consumer;
 
-public class PRRecipes extends RecipeProvider
+public class PRRecipes extends FabricRecipeProvider
 {
-    public PRRecipes(DataGenerator generator) {
-        super(generator);
+    public PRRecipes(FabricDataGenerator dataGenerator) {
+        super(dataGenerator);
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
+    protected void generateRecipes(Consumer<RecipeJsonProvider> consumer)
     {
-        ShapedRecipeBuilder.shaped(PRItemsRegistry.POTION_RING.get())
-                .define('#', Items.GOLD_INGOT)
-                .define('R', Blocks.LAPIS_BLOCK)
+        ShapedRecipeJsonBuilder.create(PRItemsRegistry.POTION_RING)
+                .input('#', Items.GOLD_INGOT)
+                .input('R', Blocks.LAPIS_BLOCK)
                 .pattern("R# ")
                 .pattern("# #")
                 .pattern(" # ")
                 .group("rings")
-                .unlockedBy("has_gold_ingot", has(Items.GOLD_INGOT))
-                .unlockedBy("has_lapis_block", has(Blocks.LAPIS_BLOCK))
-                .save(consumer);
+                .criterion("has_gold_ingot", FabricRecipeProvider.conditionsFromItem(Items.GOLD_INGOT))
+                .criterion("has_lapis_block", FabricRecipeProvider.conditionsFromItem(Blocks.LAPIS_BLOCK))
+                .offerTo(consumer);
 
-        rings(consumer, PRItemsRegistry.RING_OF_HASTE.get(), Items.EMERALD);
-        rings(consumer, PRItemsRegistry.RING_OF_REGENERATION.get(), Items.GHAST_TEAR);
-        rings(consumer, PRItemsRegistry.RING_OF_RESISTANCE.get(), Items.DIAMOND);
-        rings(consumer, PRItemsRegistry.RING_OF_SPEED.get(), Items.SUGAR);
-        rings(consumer, PRItemsRegistry.RING_OF_STRENGTH.get(), Items.BLAZE_POWDER);
-        rings(consumer, PRItemsRegistry.RING_OF_JUMP_BOOST.get(), Items.RABBIT_FOOT);
+        rings(consumer, PRItemsRegistry.RING_OF_HASTE, Items.EMERALD);
+        rings(consumer, PRItemsRegistry.RING_OF_REGENERATION, Items.GHAST_TEAR);
+        rings(consumer, PRItemsRegistry.RING_OF_RESISTANCE, Items.DIAMOND);
+        rings(consumer, PRItemsRegistry.RING_OF_SPEED, Items.SUGAR);
+        rings(consumer, PRItemsRegistry.RING_OF_STRENGTH, Items.BLAZE_POWDER);
+        rings(consumer, PRItemsRegistry.RING_OF_JUMP_BOOST, Items.RABBIT_FOOT);
 
-        rings(consumer, PRItemsRegistry.RING_OF_FIRE_RESISTANCE.get(), Items.MAGMA_CREAM);
-        ringsSpecial(consumer, PRItemsRegistry.RING_OF_INVISIBILITY.get(), Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_NIGHT_VISION.get());
-        ringsSpecial(consumer, PRItemsRegistry.RING_OF_SLOWNESS.get(), Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_SPEED.get());
-        ringsSpecial(consumer, PRItemsRegistry.RING_OF_MINING_FATIGUE.get(), Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_HASTE.get());
-        rings(consumer, PRItemsRegistry.RING_OF_NAUSEA.get(), Items.PUFFERFISH);
-        rings(consumer, PRItemsRegistry.RING_OF_BLINDNESS.get(), Items.SUSPICIOUS_STEW);
-        rings(consumer, PRItemsRegistry.RING_OF_HUNGER.get(), Items.ROTTEN_FLESH);
-        rings(consumer, PRItemsRegistry.RING_OF_NIGHT_VISION.get(), Items.GOLDEN_CARROT);
-        ringsSpecial(consumer, PRItemsRegistry.RING_OF_SATURATION.get(), Items.ENCHANTED_GOLDEN_APPLE, PRItemsRegistry.RING_OF_HUNGER.get());
-        rings(consumer, PRItemsRegistry.RING_OF_POISON.get(), Items.SPIDER_EYE);
-        rings(consumer, PRItemsRegistry.RING_OF_WATER_BREATHING.get(), Items.SPONGE);
-        ringsSpecial(consumer, PRItemsRegistry.RING_OF_WEAKNESS.get(), Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_STRENGTH.get());
-        rings(consumer, PRItemsRegistry.RING_OF_WITHER.get(), Items.WITHER_ROSE);
-        rings(consumer, PRItemsRegistry.RING_OF_GLOWING.get(), Items.GLOWSTONE);
-        rings(consumer, PRItemsRegistry.RING_OF_LEVITATION.get(), Items.SHULKER_SHELL);
-        rings(consumer, PRItemsRegistry.RING_OF_LUCK.get(), Items.TROPICAL_FISH);
-        ringsSpecial(consumer, PRItemsRegistry.RING_OF_UNLUCK.get(), Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_LUCK.get());
-        rings(consumer, PRItemsRegistry.RING_OF_SLOW_FALLING.get(), Items.PHANTOM_MEMBRANE);
-        rings(consumer, PRItemsRegistry.RING_OF_CONDUIT_POWER.get(), Items.CONDUIT);
-        rings(consumer, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), Items.HEART_OF_THE_SEA);
+        rings(consumer, PRItemsRegistry.RING_OF_FIRE_RESISTANCE, Items.MAGMA_CREAM);
+        ringsSpecial(consumer, PRItemsRegistry.RING_OF_INVISIBILITY, Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_NIGHT_VISION);
+        ringsSpecial(consumer, PRItemsRegistry.RING_OF_SLOWNESS, Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_SPEED);
+        ringsSpecial(consumer, PRItemsRegistry.RING_OF_MINING_FATIGUE, Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_HASTE);
+        rings(consumer, PRItemsRegistry.RING_OF_NAUSEA, Items.PUFFERFISH);
+        rings(consumer, PRItemsRegistry.RING_OF_BLINDNESS, Items.SUSPICIOUS_STEW);
+        rings(consumer, PRItemsRegistry.RING_OF_HUNGER, Items.ROTTEN_FLESH);
+        rings(consumer, PRItemsRegistry.RING_OF_NIGHT_VISION, Items.GOLDEN_CARROT);
+        ringsSpecial(consumer, PRItemsRegistry.RING_OF_SATURATION, Items.ENCHANTED_GOLDEN_APPLE, PRItemsRegistry.RING_OF_HUNGER);
+        rings(consumer, PRItemsRegistry.RING_OF_POISON, Items.SPIDER_EYE);
+        rings(consumer, PRItemsRegistry.RING_OF_WATER_BREATHING, Items.SPONGE);
+        ringsSpecial(consumer, PRItemsRegistry.RING_OF_WEAKNESS, Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_STRENGTH);
+        rings(consumer, PRItemsRegistry.RING_OF_WITHER, Items.WITHER_ROSE);
+        rings(consumer, PRItemsRegistry.RING_OF_GLOWING, Items.GLOWSTONE);
+        rings(consumer, PRItemsRegistry.RING_OF_LEVITATION, Items.SHULKER_SHELL);
+        rings(consumer, PRItemsRegistry.RING_OF_LUCK, Items.TROPICAL_FISH);
+        ringsSpecial(consumer, PRItemsRegistry.RING_OF_UNLUCK, Items.FERMENTED_SPIDER_EYE, PRItemsRegistry.RING_OF_LUCK);
+        rings(consumer, PRItemsRegistry.RING_OF_SLOW_FALLING, Items.PHANTOM_MEMBRANE);
+        rings(consumer, PRItemsRegistry.RING_OF_CONDUIT_POWER, Items.CONDUIT);
+        rings(consumer, PRItemsRegistry.RING_OF_DOLPHIN_GRACE, Items.HEART_OF_THE_SEA);
     }
 
-    public static void rings(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
-        ShapedRecipeBuilder.shaped(result)
-                .define('#', ingredient)
-                .define('R', PRItemsRegistry.POTION_RING.get())
+    public static void rings(Consumer<RecipeJsonProvider> consumer, Item result, Item ingredient) {
+        ShapedRecipeJsonBuilder.create(result)
+                .input('#', ingredient)
+                .input('R', PRItemsRegistry.POTION_RING)
                 .pattern(" # ")
                 .pattern("#R#")
                 .pattern(" # ")
                 .group("rings")
-                .unlockedBy("has_ring", has(PRItemsRegistry.POTION_RING.get()))
-                .save(consumer);
+                .criterion("has_ring", FabricRecipeProvider.conditionsFromItem(PRItemsRegistry.POTION_RING))
+                .offerTo(consumer);
     }
 
-    public static void ringsSpecial(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient1, ItemLike ingredient2) {
-        ShapedRecipeBuilder.shaped(result)
-                .define('#', ingredient1)
-                .define('R', ingredient2)
+    public static void ringsSpecial(Consumer<RecipeJsonProvider> consumer, Item result, Item ingredient1, ItemConvertible ingredient2) {
+        ShapedRecipeJsonBuilder.create(result)
+                .input('#', ingredient1)
+                .input('R', ingredient2)
                 .pattern(" # ")
                 .pattern("#R#")
                 .pattern(" # ")
                 .group("rings")
-                .unlockedBy("has_potion_ring", has(PRItemsRegistry.POTION_RING.get())).save(consumer);
+                .criterion("has_potion_ring", FabricRecipeProvider.conditionsFromItem(PRItemsRegistry.POTION_RING))
+                .offerTo(consumer);
     }
 }

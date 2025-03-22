@@ -7,7 +7,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,7 +17,7 @@ public class PotionRingItem extends TrinketItem
 
 	public PotionRingItem(StatusEffect effect)
 	{
-		super(new Item.Settings().maxCount(1).group(ItemGroup.BREWING));
+		super(new Settings().maxCount(1).group(ItemGroup.BREWING));
 		this.eff = effect;
 	}
 

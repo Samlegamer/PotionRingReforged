@@ -7,215 +7,96 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.item.Items;
 
 public class PotionRingItem extends TrinketItem
 {
-	private final EnumEffectTypes effects;
-	
-	public PotionRingItem(Settings settings, EnumEffectTypes eff)
+	public final StatusEffect eff;
+
+	public PotionRingItem(StatusEffect effect)
 	{
-		super(settings);
-		this.effects = eff;
+		super(new Settings().maxCount(1).group(ItemGroup.BREWING));
+		this.eff = effect;
 	}
-	
+
 	@Override
-	public boolean hasGlint(ItemStack stack)
-	{
-		if(effects != EnumEffectTypes.NONE)
-		{
-			return true;
-		}
-		return false;
+	public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+		return stack.getItem() == Items.GOLD_INGOT;
 	}
-	
+
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity livingEntity)
 	{
-		StatusEffect GROWING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "growing"));
-		StatusEffect SHRINKING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "shrinking"));
-		StatusEffect WIDENING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "widening"));
-		StatusEffect THINNING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "thinning"));
-
-		switch(effects)
+		if(eff != null)
 		{
-			case STRENGTH:
-				reloadEffect(livingEntity, StatusEffects.STRENGTH);
-				break;
-			case SPEED:
-				reloadEffect(livingEntity, StatusEffects.SPEED);
-				break;
-			case RESISTANCE:
-				reloadEffect(livingEntity, StatusEffects.RESISTANCE);
-				break;
-			case JUMP:
-				reloadEffect(livingEntity, StatusEffects.JUMP_BOOST);
-				break;
-			case HASTE:
-				reloadEffect(livingEntity, StatusEffects.HASTE);
-				break;
-			case REGENERATION:
-				reloadEffect(livingEntity, StatusEffects.REGENERATION);
-				break;
-			case GROWING:
-				reloadEffect(livingEntity, GROWING);
-				break;
-			case SHRINKING:
-				reloadEffect(livingEntity, SHRINKING);
-				break;
-			case WIDENING:
-				reloadEffect(livingEntity, WIDENING);
-				break;
-			case THINNING:
-				reloadEffect(livingEntity, THINNING);
-				break;
-			case NONE:
-				break;
+			reloadMobEffect(livingEntity, eff);
 		}
 	}
 	
 	@Override
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity livingEntity)
 	{
-		StatusEffect GROWING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "growing"));
-		StatusEffect SHRINKING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "shrinking"));
-		StatusEffect WIDENING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "widening"));
-		StatusEffect THINNING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "thinning"));
-
-		switch(effects)
+		if(eff != null)
 		{
-			case STRENGTH:
-				AddEffect(livingEntity, StatusEffects.STRENGTH);
-				break;
-			case SPEED:
-				AddEffect(livingEntity, StatusEffects.SPEED);
-				break;
-			case RESISTANCE:
-				AddEffect(livingEntity, StatusEffects.RESISTANCE);
-				break;
-			case JUMP:
-				AddEffect(livingEntity, StatusEffects.JUMP_BOOST);
-				break;
-			case HASTE:
-				AddEffect(livingEntity, StatusEffects.HASTE);
-				break;
-			case REGENERATION:
-				AddEffect(livingEntity, StatusEffects.REGENERATION);
-				break;
-			case GROWING:
-				AddEffect(livingEntity, GROWING);
-				break;
-			case SHRINKING:
-				AddEffect(livingEntity, SHRINKING);
-				break;
-			case WIDENING:
-				AddEffect(livingEntity, WIDENING);
-				break;
-			case THINNING:
-				AddEffect(livingEntity, THINNING);
-				break;
-			case NONE:
-				break;
+			AddMobEffect(livingEntity, eff);
 		}
 	}
-	
+
 	@Override
-	public boolean canUnequip(ItemStack stack, SlotReference slot, LivingEntity livingEntity)
-	{
-		StatusEffect GROWING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "growing"));
-		StatusEffect SHRINKING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "shrinking"));
-		StatusEffect WIDENING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "widening"));
-		StatusEffect THINNING = Registry.STATUS_EFFECT.get(new Identifier("sizeshiftingpotions", "thinning"));
-
-    	switch(effects)
-		{
-			case STRENGTH:
-				DeleteEffect(livingEntity, StatusEffects.STRENGTH);
-				break;
-			case SPEED:
-				DeleteEffect(livingEntity, StatusEffects.SPEED);
-				break;
-			case RESISTANCE:
-				DeleteEffect(livingEntity, StatusEffects.RESISTANCE);
-				break;
-			case JUMP:
-				DeleteEffect(livingEntity, StatusEffects.JUMP_BOOST);
-				break;
-			case HASTE:
-				DeleteEffect(livingEntity, StatusEffects.HASTE);
-				break;
-			case REGENERATION:
-				DeleteEffect(livingEntity, StatusEffects.REGENERATION);
-				break;
-			case GROWING:
-				DeleteEffect(livingEntity, GROWING);
-				break;
-			case SHRINKING:
-				DeleteEffect(livingEntity, SHRINKING);
-				break;
-			case WIDENING:
-				DeleteEffect(livingEntity, WIDENING);
-				break;
-			case THINNING:
-				DeleteEffect(livingEntity, THINNING);
-				break;
-			case NONE:
-				break;
-		}
-    	return effects != null;
-	}
-	
-	
-	private void AddEffect(LivingEntity livingEntity, StatusEffect mbEff)
+	public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity)
     {
-		if(!livingEntity.hasStatusEffect(mbEff))
+		if(eff != null)
 		{
-			StatusEffectInstance effectInstance = new StatusEffectInstance(mbEff, 240, 0, false, false);
-            if(livingEntity.world.isClient) effectInstance.getDuration();
-            	{livingEntity.addStatusEffect(effectInstance);}
-		}
-		else if(TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 2)
-		{
-			StatusEffectInstance effectInstance = new StatusEffectInstance(mbEff, 240, 1, false, false);
-            if(livingEntity.world.isClient) effectInstance.getDuration();
-            	{livingEntity.addStatusEffect(effectInstance);}
+			DeleteMobEffect(entity, eff);
 		}
     }
-	
-	private void reloadEffect(LivingEntity livingEntity, StatusEffect mbEff)
+    
+    private void AddMobEffect(LivingEntity livingEntity, StatusEffect mbEff)
+    {
+		if(TrinketsApi.getTrinketComponent(livingEntity).isPresent()) {
+			StatusEffectInstance effectInstance = new StatusEffectInstance(mbEff, mbEff == StatusEffects.NIGHT_VISION ? 500 : 240, TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() - 1, true, true);
+			livingEntity.addStatusEffect(effectInstance);
+		}
+    }
+    
+    private void reloadMobEffect(LivingEntity livingEntity, StatusEffect mbEff)
 	{
-    	int baseDuration = 240;
-	    int newDuration1 = baseDuration;
-	    int newDuration2 = baseDuration;
+    	int baseDuration = mbEff == StatusEffects.NIGHT_VISION ? 500 : 240;
+		int minDuration = mbEff == StatusEffects.NIGHT_VISION ? 240 : 100;
 
 	    if (livingEntity.hasStatusEffect(mbEff)) {
-	    	StatusEffectInstance currentEffect = livingEntity.getStatusEffect(mbEff);
-	        int currentDuration = currentEffect.getDuration();
-
-	        if (TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 1) {
-	            newDuration1 += currentDuration;
-	        } else if (TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 2) {
-	            newDuration2 += currentDuration;
-	        }
+			StatusEffectInstance currentMobEffect = livingEntity.getStatusEffect(mbEff);
+			if(currentMobEffect != null)
+			{
+				if(currentMobEffect.getDuration() <= minDuration)
+				{
+					currentMobEffect.duration = baseDuration;
+					livingEntity.addStatusEffect(currentMobEffect);
+				}
+			}
 	    }
-
-	    StatusEffectInstance effA1 = new StatusEffectInstance(mbEff, newDuration1, 0, false, false);
-	    StatusEffectInstance effA2 = new StatusEffectInstance(mbEff, newDuration2, 1, false, false);
-
-	    if (TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 1) {
-	        livingEntity.addStatusEffect(effA1);
-	    } else if (TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 2) {
-	        livingEntity.addStatusEffect(effA2);
-	    }
+		else if (!livingEntity.hasStatusEffect(mbEff) && TrinketsApi.getTrinketComponent(livingEntity).isPresent())
+		{
+			if(TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 1)
+			{
+				StatusEffectInstance eff = new StatusEffectInstance(mbEff, baseDuration, TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() - 1, true, true);
+				livingEntity.addStatusEffect(eff);
+			}
+		}
 	}
     
-    private void DeleteEffect(LivingEntity livingEntity, StatusEffect mbEff)
+    private void DeleteMobEffect(LivingEntity livingEntity, StatusEffect mbEff)
     {
-    	if(livingEntity.hasStatusEffect(mbEff))
-		{
-			livingEntity.removeStatusEffect(mbEff);
+		StatusEffectInstance currentMobEffect = livingEntity.getStatusEffect(mbEff);
+
+		if(currentMobEffect != null) {
+			if (livingEntity.hasStatusEffect(mbEff) && currentMobEffect.getAmplifier() > 0) {
+				currentMobEffect.amplifier = currentMobEffect.amplifier - 1;
+				livingEntity.removeStatusEffect(mbEff);
+				livingEntity.addStatusEffect(currentMobEffect);
+			}
 		}
     }
 }
