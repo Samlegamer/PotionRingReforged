@@ -1,44 +1,42 @@
 {
 	"schemaVersion": 1,
-	"id": "template-mod",
-	"version": "${version}",
-	"name": "Template Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"id": "potionring",
+	"version": "1.21.1-2.0",
+
+	"name": "Potion Ring",
+	"description": "A port of the Potion Finger Mod to Minecraft 1.21.1 [FABRIC]!",
 	"authors": [
-		"Me!"
+		"Samlegamer"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/potion-ring-reforged-fabric",
+		"sources": "https://github.com/Samlegamer/PotionRingReforged"
 	},
+
 	"license": "CC0-1.0",
-	"icon": "assets/template-mod/icon.png",
+	"icon": "icon.png",
+
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.TemplateMod"
+			"fr.samlegamer.potionring.PotionRing"
 		],
 		"client": [
-			"com.example.TemplateModClient"
+			"fr.samlegamer.potionring.client.PRClient"
 		],
 		"fabric-datagen": [
-			"com.example.TemplateModDataGenerator"
+			"fr.samlegamer.potionring.data.PRDataGen"
 		]
 	},
-	"mixins": [
-		"template-mod.mixins.json",
-		{
-			"config": "template-mod.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.16.10",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
+		"trinkets": ">=3.10.0",
 		"fabric-api": "*"
 	},
 	"suggests": {
 		"another-mod": "*"
-	}
+	},
+	"accessWidener": "potionring.accesswidener"
 }

@@ -1,0 +1,5 @@
+accessWidener v1 named
+
+accessible field net/minecraft/entity/effect/StatusEffectInstance amplifier I
+accessible field net/minecraft/entity/effect/StatusEffectInstance duration I
+accessible field net/minecraft/data/client/ItemModelGenerator writer Ljava/util/function/BiConsumer;
