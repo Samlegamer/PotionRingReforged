@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": "minecraft:fermented_spider_eye",
+    "R": "potionring:ring_of_strength"
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "potionring:ring_of_weakness"
+  }
+}

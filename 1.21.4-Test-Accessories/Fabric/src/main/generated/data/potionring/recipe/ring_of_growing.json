@@ -1,0 +1,24 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "sizeshiftingpotions"
+      ]
+    }
+  ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " g ",
+        "g#g",
+        " g "
+    ],
+    "key": {
+        "#": "potionring:potion_ring",
+        "g": "minecraft:crimson_fungus"
+    },
+    "result": {
+        "count": 1,
+        "id": "potionring:ring_of_growing"
+    }
+}
