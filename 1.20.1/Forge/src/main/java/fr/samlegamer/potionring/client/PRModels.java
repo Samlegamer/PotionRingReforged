@@ -54,13 +54,13 @@ public class PRModels extends ItemModelProvider
         addRingModel(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
         addRingModel(PRItemsRegistry.RING_OF_DARKNESS.get());
 
-        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_example_effect")));
-        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_another_effect")));
+        addRingModel(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_example_effect")));
+        addRingModel(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_another_effect")));
 
-        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_growing")));
-        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_shrinking")));
-        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_thinning")));
-        addRingModel(BuiltInRegistries.ITEM.get(new ResourceLocation("potionring", "ring_of_widening")));
+        addRingModel(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_growing")));
+        addRingModel(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_shrinking")));
+        addRingModel(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_thinning")));
+        addRingModel(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_widening")));
     }
 
     private void addRingModel(@Nonnull Item itemName)

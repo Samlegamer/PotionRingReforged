@@ -32,17 +32,17 @@ public class PotionRing
 	public static final String MODID = "potionring";
 	public static final Logger log = LogManager.getLogger();
 
-	public PotionRing()
+	public PotionRing(FMLJavaModLoadingContext javaModLoadingContext)
 	{
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onGatherData);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::addToTab);
-
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        log.info("Potion Rings - REFORGED Loading...");
+		IEventBus bus = javaModLoadingContext.getModEventBus();
 		PRItemsRegistry.ITEMS_REGISTRY.register(bus);
 		PRTagsItemRegistry.registerTags();
 		PRItemsRegistry.registryVanillaRings();
 		PRItemsRegistry.registryModdedCustom(bus);
-		log.info("Potion Rings - REFORGED is Charged");
+        bus.addListener(this::onGatherData);
+        bus.addListener(this::addToTab);
+		log.info("Potion Rings - REFORGED is Charged !");
 	}
 
 	private void addToTab(BuildCreativeModeTabContentsEvent event)
@@ -58,10 +58,10 @@ public class PotionRing
 
 			if(ModList.get().isLoaded("sizeshiftingpotions"))
 			{
-				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_growing")));
-				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_shrinking")));
-				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_thinning")));
-				event.accept(BuiltInRegistries.ITEM.get(new ResourceLocation(MODID, "ring_of_widening")));
+				event.accept(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MODID, "ring_of_growing")));
+				event.accept(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MODID, "ring_of_shrinking")));
+				event.accept(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MODID, "ring_of_thinning")));
+				event.accept(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MODID, "ring_of_widening")));
 			}
 
 			if(!list.isEmpty()) {
@@ -72,7 +72,7 @@ public class PotionRing
 					if (parts.length == 2) {
 						final String mod = parts[0];
 						final String id = parts[1];
-						final Item itemModded = BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_"+id));
+						final Item itemModded = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_"+id));
 
 						if(ModList.get().isLoaded(mod))
 						{

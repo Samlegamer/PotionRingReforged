@@ -48,10 +48,10 @@ public class PRClient
         setColorToRing(event, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
         setColorToRing(event, PRItemsRegistry.RING_OF_DARKNESS.get());
 
-        setColorToRing(event, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_growing")), 14289002);
-        setColorToRing(event, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_shrinking")), 13411432);
-        setColorToRing(event, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_thinning")), 14922751);
-        setColorToRing(event, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_widening")), 11796418);
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_growing")), 14289002);
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_shrinking")), 13411432);
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_thinning")), 14922751);
+        setColorToRing(event, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_widening")), 11796418);
 
         List<String> list = (List<String>) PRItemsRegistry.createNewFileOrLearn(false);
         List<Integer> colors = (List<Integer>) PRItemsRegistry.createNewFileOrLearn(true);
@@ -63,7 +63,7 @@ public class PRClient
                     final String mod = parts[0];
                     final String id = parts[1];
 
-                    Item itemModded = BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_"+id));
+                    Item itemModded = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_"+id));
                     setColorToRing(event, itemModded, colors.get(i));
                 }
             }

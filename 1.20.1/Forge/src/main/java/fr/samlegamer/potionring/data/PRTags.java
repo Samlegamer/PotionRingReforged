@@ -52,10 +52,10 @@ public class PRTags extends ItemTagsProvider
                 PRItemsRegistry.RING_OF_CONDUIT_POWER.get(),
                 PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(),
                 PRItemsRegistry.RING_OF_DARKNESS.get(),
-                BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_growing")),
-                BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_shrinking")),
-                BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_thinning")),
-                BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_widening"))
+                BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_growing")),
+                BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_shrinking")),
+                BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_thinning")),
+                BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_widening"))
         );
 
     }

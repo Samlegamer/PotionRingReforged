@@ -68,17 +68,17 @@ public class PRRecipes extends RecipeProvider
         rings(consumer, PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), Items.HEART_OF_THE_SEA);
         rings(consumer, PRItemsRegistry.RING_OF_DARKNESS.get(), Items.ECHO_SHARD);
 
-        ringsLoaded(consumer, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_growing")),
+        ringsLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_growing")),
                 Items.CRIMSON_FUNGUS, "sizeshiftingpotions");
 
-        ringsLoaded(consumer, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_shrinking")),
+        ringsLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_shrinking")),
                 Items.WARPED_FUNGUS, "sizeshiftingpotions");
 
-        ringsSpecialLoaded(consumer, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_thinning")),
-                Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_shrinking")), "sizeshiftingpotions");
+        ringsSpecialLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_thinning")),
+                Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_shrinking")), "sizeshiftingpotions");
 
-        ringsSpecialLoaded(consumer, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_widening")),
-                Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_growing")), "sizeshiftingpotions");
+        ringsSpecialLoaded(consumer, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_widening")),
+                Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_growing")), "sizeshiftingpotions");
 
     }
 
@@ -115,7 +115,7 @@ public class PRRecipes extends RecipeProvider
                 .pattern(" # ")
                 .group("rings")
                 .unlockedBy("has_ring", has(PRItemsRegistry.POTION_RING.get()))::save)
-                .build(consumer, new ResourceLocation(PotionRing.MODID, result.asItem().toString()));
+                .build(consumer, ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, result.asItem().toString()));
     }
 
     public static void ringsSpecialLoaded(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient1, ItemLike ingredient2, String loaded) {
@@ -128,6 +128,6 @@ public class PRRecipes extends RecipeProvider
                 .pattern(" # ")
                 .group("rings")
                 .unlockedBy("has_potion_ring", has(PRItemsRegistry.POTION_RING.get()))::save)
-                .build(consumer, new ResourceLocation(PotionRing.MODID, result.asItem().toString()));
+                .build(consumer, ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, result.asItem().toString()));
     }
 }
