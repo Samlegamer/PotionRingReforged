@@ -52,8 +52,8 @@ public class PRModels extends ItemModelProvider
         addRingModel(PRItemsRegistry.RING_OF_CONDUIT_POWER.get());
         addRingModel(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get());
         addRingModel(PRItemsRegistry.RING_OF_DARKNESS.get());
-        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
-        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
+        Item example_ring = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_example_effect"));
+        Item another_ring = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_another_effect"));
 
         if(example_ring != null) {
             addRingModel(example_ring);

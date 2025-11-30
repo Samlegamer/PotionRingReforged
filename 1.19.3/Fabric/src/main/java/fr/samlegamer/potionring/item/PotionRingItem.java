@@ -69,6 +69,15 @@ public class PotionRingItem extends TrinketItem
 			StatusEffectInstance currentMobEffect = livingEntity.getStatusEffect(mbEff);
 			if(currentMobEffect != null)
 			{
+                int ringAmplifier = 0;
+                if (TrinketsApi.getTrinketComponent(livingEntity).isPresent()) {
+                    ringAmplifier = TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() - 1;
+                }
+
+                if (currentMobEffect.getAmplifier() > ringAmplifier) {
+                    return;
+                }
+
 				if(currentMobEffect.getDuration() <= minDuration)
 				{
 					currentMobEffect.duration = baseDuration;

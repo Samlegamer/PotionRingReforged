@@ -44,7 +44,7 @@ public class PotionRingItemModded extends Item implements ICurioItem
 	@Override
 	public void curioTick(SlotContext slotContext, ItemStack stack)
 	{
-		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name)));
+		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath(mod, name)));
 		if(eff != null)
 		{
 			reloadEffect(slotContext.entity(), eff);
@@ -54,7 +54,7 @@ public class PotionRingItemModded extends Item implements ICurioItem
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack)
 	{
-		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name)));
+		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath(mod, name)));
 		if(eff != null)
 		{
 			AddEffect(slotContext.entity(), eff);
@@ -64,7 +64,7 @@ public class PotionRingItemModded extends Item implements ICurioItem
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack)
     {
-		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(mod, name)));
+		Holder<MobEffect> eff = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath(mod, name)));
 		if(eff != null)
 		{
 			DeleteEffect(slotContext.entity(), eff);
@@ -89,6 +89,15 @@ public class PotionRingItemModded extends Item implements ICurioItem
 	        MobEffectInstance currentEffect = livingEntity.getEffect(mbEff);
 			if(currentEffect != null)
 			{
+                int ringAmplifier = 0;
+                if (CuriosApi.getCuriosInventory(livingEntity).isPresent()) {
+                    ringAmplifier = CuriosApi.getCuriosInventory(livingEntity).get().findCurios(this).size() - 1;
+                }
+
+                if (currentEffect.getAmplifier() > ringAmplifier) {
+                    return;
+                }
+
 				if(currentEffect.getDuration() <= minDuration)
 				{
 					currentEffect.duration = baseDuration;

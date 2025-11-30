@@ -64,7 +64,7 @@ public class PRClient
                     final String mod = parts[0];
                     final String id = parts[1];
 
-                    Item itemModded = BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_"+id));
+                    Item itemModded = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_"+id));
                     setColorToRing(event, itemModded, colors.get(i));
                 }
             }

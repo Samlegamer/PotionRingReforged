@@ -32,16 +32,15 @@ public class PotionRing
 	public static final String MODID = "potionring";
 	public static final Logger log = LogManager.getLogger();
 
-	public PotionRing()
+	public PotionRing(FMLJavaModLoadingContext javaModLoadingContext)
 	{
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onGatherData);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::addToTab);
-
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus bus = javaModLoadingContext.getModEventBus();
 		PRItemsRegistry.ITEMS_REGISTRY.register(bus);
 		PRTagsItemRegistry.registerTags();
 		PRItemsRegistry.registryVanillaRings();
 		PRItemsRegistry.registryModdedCustom(bus);
+        bus.addListener(this::onGatherData);
+        bus.addListener(this::addToTab);
 		log.info("Potion Rings - REFORGED is Charged");
 	}
 
@@ -63,7 +62,7 @@ public class PotionRing
 					if (parts.length == 2) {
 						final String mod = parts[0];
 						final String id = parts[1];
-						final Item itemModded = BuiltInRegistries.ITEM.get(new ResourceLocation(PotionRing.MODID, "ring_of_"+id));
+						final Item itemModded = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "ring_of_"+id));
 
 						if(ModList.get().isLoaded(mod))
 						{

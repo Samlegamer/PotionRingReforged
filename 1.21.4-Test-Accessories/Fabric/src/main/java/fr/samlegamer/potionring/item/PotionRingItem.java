@@ -64,6 +64,15 @@ public class PotionRingItem extends AccessoryItem
 			StatusEffectInstance currentMobEffect = slotReference.entity().getStatusEffect(mbEff);
 			if(currentMobEffect != null)
 			{
+                int ringAmplifier = 0;
+                if (slotReference.slotContainer().getAccessories() != null) {
+                    ringAmplifier = slotReference.slotContainer().getAccessories().count(this) - 1;
+                }
+
+                if (currentMobEffect.getAmplifier() > ringAmplifier) {
+                    return;
+                }
+
 				if(currentMobEffect.getDuration() <= minDuration)
 				{
 					currentMobEffect.duration = baseDuration;

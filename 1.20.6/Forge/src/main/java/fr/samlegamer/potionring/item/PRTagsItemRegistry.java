@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 
 public class PRTagsItemRegistry
 {
-    public static final TagKey<Item> POTION_RINGS = ItemTags.create(new ResourceLocation(PotionRing.MODID, "potion_rings"));
+    public static final TagKey<Item> POTION_RINGS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(PotionRing.MODID, "potion_rings"));
 
     public static void registerTags() {
     }

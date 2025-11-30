@@ -46,8 +46,8 @@ public class PRLang extends LanguageProvider
         add(PRItemsRegistry.RING_OF_DOLPHIN_GRACE.get(), "Ring of Dolphin Grace");
         add(PRItemsRegistry.RING_OF_DARKNESS.get(), "Ring of Darkness");
 
-        Item example_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_example_effect"));
-        Item another_ring = ForgeRegistries.ITEMS.getValue(new ResourceLocation("potionring", "ring_of_another_effect"));
+        Item example_ring = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_example_effect"));
+        Item another_ring = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("potionring", "ring_of_another_effect"));
 
         if(example_ring != null) {
             add(example_ring, "Ring of Example Effect");
