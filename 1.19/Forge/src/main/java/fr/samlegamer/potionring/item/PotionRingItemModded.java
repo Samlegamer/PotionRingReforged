@@ -88,6 +88,15 @@ public class PotionRingItemModded extends Item implements ICurioItem
 	        MobEffectInstance currentEffect = livingEntity.getEffect(mbEff);
 			if(currentEffect != null)
 			{
+                int ringAmplifier = 0;
+                if (CuriosApi.getCuriosHelper() != null) {
+                    ringAmplifier = CuriosApi.getCuriosHelper().findCurios(livingEntity, this).size() - 1;
+                }
+
+                if (currentEffect.getAmplifier() > ringAmplifier) {
+                    return;
+                }
+
 				if(currentEffect.getDuration() <= minDuration)
 				{
 					currentEffect.duration = baseDuration;

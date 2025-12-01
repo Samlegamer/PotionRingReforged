@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "potionring",
-	"version": "1.18.2-2.0",
+	"version": "1.18.2-2.1",
 
 	"name": "Potion Ring",
 	"description": "A port of the Potion Finger Mod to Minecraft 1.18.2 [FABRIC]!",
