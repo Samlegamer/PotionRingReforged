@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+  "id": "${archives_base_name}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+    "${mod_authors}"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/potion-ring-reforged-fabric",
+    "sources": "https://github.com/Samlegamer/PotionRingReforged"
+  },
+  "license": "${mod_license}",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "${mod_init}"
+    ],
+    "fabric-datagen": [
+      "${mod_init_datagen}"
+    ]
+  },
+  "depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.6",
+		"java": ">=21",
+		"fabric-api": "*",
+        "trinkets": ">=3.11.0"
+	},
+	"suggests": {
+		"another-mod": "*"
+	},
+  "accessWidener": "potionring.accesswidener"
+}
