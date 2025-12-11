@@ -1,0 +1,109 @@
+package fr.samlegamer.potionring.item;
+
+import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.TrinketItem;
+import dev.emi.trinkets.api.TrinketsApi;
+import fr.samlegamer.potionring.PotionRing;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
+
+public class PotionRingItem extends TrinketItem
+{
+	public final RegistryEntry<StatusEffect> eff;
+
+	public PotionRingItem(String name, RegistryEntry<StatusEffect> effect)
+	{
+		super(new Settings().maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(PotionRing.MODID, name))));
+		this.eff = effect;
+	}
+
+	@Override
+	public void tick(ItemStack stack, SlotReference slot, LivingEntity livingEntity)
+	{
+		if(eff != null)
+		{
+			reloadMobEffect(livingEntity, eff);
+		}
+	}
+	
+	@Override
+	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity livingEntity)
+	{
+		if(eff != null)
+		{
+			AddMobEffect(livingEntity, eff);
+		}
+	}
+
+	@Override
+	public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity)
+    {
+		if(eff != null)
+		{
+			DeleteMobEffect(entity, eff);
+		}
+    }
+    
+    private void AddMobEffect(LivingEntity livingEntity, RegistryEntry<StatusEffect> mbEff)
+    {
+		if(TrinketsApi.getTrinketComponent(livingEntity).isPresent()) {
+			StatusEffectInstance effectInstance = new StatusEffectInstance(mbEff, mbEff == StatusEffects.NIGHT_VISION ? 500 : 240, TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() - 1, true, true);
+			livingEntity.addStatusEffect(effectInstance);
+		}
+    }
+    
+    private void reloadMobEffect(LivingEntity livingEntity, RegistryEntry<StatusEffect> mbEff)
+	{
+    	int baseDuration = mbEff == StatusEffects.NIGHT_VISION ? 500 : 240;
+		int minDuration = mbEff == StatusEffects.NIGHT_VISION ? 240 : 100;
+
+	    if (livingEntity.hasStatusEffect(mbEff)) {
+			StatusEffectInstance currentMobEffect = livingEntity.getStatusEffect(mbEff);
+			if(currentMobEffect != null)
+			{
+                int ringAmplifier = 0;
+                if (TrinketsApi.getTrinketComponent(livingEntity).isPresent()) {
+                    ringAmplifier = TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() - 1;
+                }
+
+                if (currentMobEffect.getAmplifier() > ringAmplifier) {
+                    return;
+                }
+
+				if(currentMobEffect.getDuration() <= minDuration)
+				{
+					currentMobEffect.duration = baseDuration;
+					livingEntity.addStatusEffect(currentMobEffect);
+				}
+			}
+	    }
+		else if (!livingEntity.hasStatusEffect(mbEff) && TrinketsApi.getTrinketComponent(livingEntity).isPresent())
+		{
+			if(TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() == 1)
+			{
+				StatusEffectInstance eff = new StatusEffectInstance(mbEff, baseDuration, TrinketsApi.getTrinketComponent(livingEntity).get().getEquipped(this).size() - 1, true, true);
+				livingEntity.addStatusEffect(eff);
+			}
+		}
+	}
+    
+    private void DeleteMobEffect(LivingEntity livingEntity, RegistryEntry<StatusEffect> mbEff)
+    {
+		StatusEffectInstance currentMobEffect = livingEntity.getStatusEffect(mbEff);
+
+		if(currentMobEffect != null) {
+			if (livingEntity.hasStatusEffect(mbEff) && currentMobEffect.getAmplifier() > 0) {
+				currentMobEffect.amplifier = currentMobEffect.amplifier - 1;
+				livingEntity.removeStatusEffect(mbEff);
+				livingEntity.addStatusEffect(currentMobEffect);
+			}
+		}
+    }
+}
