@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rings",
+  "key": {
+    "#": "minecraft:gold_ingot",
+    "R": "minecraft:lapis_block"
+  },
+  "pattern": [
+    "R# ",
+    "# #",
+    " # "
+  ],
+  "result": {
+    "id": "potionring:potion_ring"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "item.potionring.potion_ring": "Обычное Кольцо",
+  "item.potionring.ring_of_haste": "Кольцо Спешки",
+  "item.potionring.ring_of_jump_boost": "Кольцо Прыгучести",
+  "item.potionring.ring_of_resistance": "Кольцо Сопротивления",
+  "item.potionring.ring_of_speed": "Кольцо Скорости",
+  "item.potionring.ring_of_strengh": "Кольцо Силы",
+  "item.potionring.ring_of_regeneration": "Кольцо Регенерации",
+  "item.potionring.ring_of_growing": "Кольцо Роста",
+  "item.potionring.ring_of_shrinking": "Кольцо Уменьшения",
+  "item.potionring.ring_of_widening": "Кольцо Расширения",
+  "item.potionring.ring_of_thinning": "Кольцо Истончения",
+
+
+  "item.potionring.ring_of_blindness": "Ring of Blindness",
+  "item.potionring.ring_of_conduit_power": "Ring of Conduit Power",
+  "item.potionring.ring_of_dolphins_grace": "Ring of Dolphin Grace",
+  "item.potionring.ring_of_glowing": "Ring of Glowing",
+  "item.potionring.ring_of_hunger": "Ring of Hunger",
+  "item.potionring.ring_of_levitation": "Ring of Levitation",
+  "item.potionring.ring_of_luck": "Ring of Luck",
+  "item.potionring.ring_of_mining_fatigue": "Ring of Mining Fatigue",
+  "item.potionring.ring_of_nausea": "Ring of Nausea",
+  "item.potionring.ring_of_poison": "Ring of Poison",
+  "item.potionring.ring_of_saturation": "Ring of Saturation",
+  "item.potionring.ring_of_slowness": "Ring of Slowness",
+  "item.potionring.ring_of_unluck": "Ring of Bad Luck",
+  "item.potionring.ring_of_weakness": "Ring of Weakness",
+  "item.potionring.ring_of_wither": "Ring of Wither"
+}
