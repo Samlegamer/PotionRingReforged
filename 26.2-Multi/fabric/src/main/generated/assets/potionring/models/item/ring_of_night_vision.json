@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "potionring:item/gold_ring",
+    "layer1": "potionring:item/gem_color",
+    "layer2": "potionring:item/gem_light"
+  }
+}

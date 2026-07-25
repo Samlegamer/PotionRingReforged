@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rings",
+  "key": {
+    "#": "minecraft:fermented_spider_eye",
+    "R": "potionring:ring_of_haste"
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "id": "potionring:ring_of_mining_fatigue"
+  }
+}
