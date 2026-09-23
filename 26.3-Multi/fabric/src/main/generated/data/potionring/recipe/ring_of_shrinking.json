@@ -1,0 +1,24 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "sizeshiftingpotions"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "rings",
+  "key": {
+    "#": "minecraft:warped_fungus",
+    "R": "potionring:potion_ring"
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "id": "potionring:ring_of_shrinking"
+  }
+}
